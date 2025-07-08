@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2: Redes de Computadoras: Definición, Ventajas y Elementos Clave</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 2: Redes de Computadoras: Definición, Ventajas y Elementos Clave</h1>
+        <p class="quote">"La conectividad es el oxígeno de la era digital."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: ¿Qué Recordamos de la Sesión 1?</h2>
+            <p>Antes de sumergirnos en nuevos conceptos, hagamos un breve repaso de lo que vimos en la sesión anterior. ¿Quién recuerda qué es la teleinformática? ¿Y cuáles eran los elementos esenciales de la comunicación?</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: Preguntas al Vuelo (5 minutos)</h3>
+                <p>El docente lanzará algunas preguntas rápidas sobre los conceptos de la Sesión 1. ¡Levanten la mano para responder!</p>
+                <ul>
+                    <li>¿Qué es la Comunicación y cuáles son sus elementos principales?</li>
+                    <li>Define Teleinformática con tus propias palabras.</li>
+                    <li>Menciona un ejemplo de cómo la teleinformática ha cambiado tu vida diaria.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Redes de Computadoras: Una Definición Más Profunda</h2>
+            <div class="concept-box">
+                <h3>Término: Red de Computadoras</h3>
+                <p>Una <span class="highlight">red de computadoras</span> es un sistema de comunicación que permite a dos o más dispositivos electrónicos (llamados nodos) <span class="highlight">intercambiar datos</span> y <span class="highlight">compartir recursos</span>. Estos dispositivos están conectados a través de enlaces de comunicación que pueden ser físicos (cables) o inalámbricos (ondas de radio).</p>
+                <p>El objetivo principal de una red es facilitar la comunicación y el acceso a la información y los recursos de manera eficiente y centralizada.</p>
+            </div>
+            <div class="example-box">
+                <h3>Analogía: Una Orquesta Musical</h3>
+                <p>Imagina una orquesta. Cada músico (dispositivo) tiene su instrumento (hardware) y su partitura (software/protocolo). El director (servidor/controlador) coordina. El sonido que viaja por el aire (medio) es la información. Todos trabajan juntos para crear una sinfonía (red funcional) y compartir la música (información).</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Las Grandes Ventajas de las Redes</h2>
+            <p>¿Por qué las redes se han vuelto tan indispensables en nuestra sociedad? Sus beneficios son múltiples y transformadores:</p>
+            <h3>Ventajas Clave:</h3>
+            <ul>
+                <li><span class="highlight">Compartir Recursos (Hardware y Software):</span>
+                    <ul>
+                        <li><span class="highlight">Hardware:</span> Una sola impresora puede ser usada por todos en la oficina. Un servidor potente puede ser accedido por múltiples usuarios.</li>
+                        <li><span class="highlight">Software:</span> Licencias de software compartidas, bases de datos centralizadas, aplicaciones en la nube.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Comunicación Eficiente y Colaboración:</span>
+                    <ul>
+                        <li>Correo electrónico, mensajería instantánea, videollamadas, sistemas de gestión de proyectos, edición colaborativa de documentos.</li>
+                        <li>Facilita el trabajo en equipo sin importar la ubicación física.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Acceso Centralizado a la Información:</span>
+                    <ul>
+                        <li>Datos almacenados en servidores accesibles desde cualquier punto de la red, garantizando la coherencia y la disponibilidad.</li>
+                        <li>Bases de datos de clientes, inventarios, historiales médicos, etc.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Reducción de Costos:</span>
+                    <ul>
+                        <li>Menos hardware individual necesario (menos impresoras, menos almacenamiento local).</li>
+                        <li>Licencias de software más eficientes.</li>
+                        <li>Mantenimiento centralizado, lo que puede reducir gastos operativos.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Flexibilidad y Movilidad:</span>
+                    <ul>
+                        <li>Acceso a la red desde diferentes dispositivos (laptops, tablets, smartphones).</li>
+                        <li>Teletrabajo y educación a distancia se vuelven posibles.</li>
+                        <li>Acceso a servicios y recursos en la nube desde cualquier lugar con conexión.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Escalabilidad:</span>
+                    <ul>
+                        <li>Capacidad de añadir nuevos dispositivos, usuarios o servicios a la red de manera relativamente sencilla a medida que las necesidades crecen.</li>
+                        <li>Una red bien diseñada puede expandirse sin requerir una reestructuración completa.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. Elementos de la Red: Los Protagonistas</h2>
+            <p>Para que una red funcione, necesitamos diferentes tipos de elementos que cumplen roles específicos. Podemos clasificarlos en tres categorías principales:</p>
+
+            <h3>4.1. Dispositivos Finales (End Devices / Hosts)</h3>
+            <div class="concept-box">
+                <p>Son los puntos de origen o destino de los datos en la red. Son los dispositivos que los usuarios utilizan para interactuar con la red.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Computadoras (PCs, Laptops):</span> Estaciones de trabajo, puntos de acceso principal para usuarios.</li>
+                <li><span class="highlight">Servidores:</span> Computadoras potentes que proveen servicios y recursos a otros dispositivos en la red (servidores web, de archivos, de correo, de bases de datos).</li>
+                <li><span class="highlight">Smartphones y Tablets:</span> Dispositivos móviles que se conectan a redes inalámbricas.</li>
+                <li><span class="highlight">Impresoras en Red:</span> Dispositivos de impresión que pueden ser accedidos por múltiples usuarios.</li>
+                <li><span class="highlight">Cámaras IP:</span> Cámaras de seguridad que transmiten video a través de la red.</li>
+                <li><span class="highlight">Dispositivos IoT (Internet of Things):</span> Sensores, electrodomésticos inteligentes, dispositivos vestibles (wearables) que se conectan a la red.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://jmcristobal.com/wp-content/uploads/2016/12/VSO-Componentes-de-una-red_eng.png" alt="Dispositivos Finales" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplos de dispositivos finales: Laptop, Smartphone, Servidor, Impresora.</p>
+            </div>
+
+            <h3>4.2. Dispositivos Intermediarios de Red (Intermediary Devices)</h3>
+            <div class="concept-box">
+                <p>Son los dispositivos que conectan los dispositivos finales y dirigen los datos a través de la red. Su función es garantizar que la información llegue a su destino correcto.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Switches:</span> Conectan dispositivos dentro de una misma red local (LAN). Aprenden las direcciones de los dispositivos y envían el tráfico solo al puerto de destino.</li>
+                <li><span class="highlight">Routers:</span> Conectan diferentes redes entre sí (ej. tu red local a Internet). Deciden la mejor ruta para que los paquetes de datos lleguen a su destino.</li>
+                <li><span class="highlight">Puntos de Acceso Inalámbrico (Access Points - AP):</span> Permiten que dispositivos inalámbricos se conecten a una red cableada.</li>
+                <li><span class="highlight">Firewalls:</span> Dispositivos de seguridad que monitorean y controlan el tráfico de red entrante y saliente basándose en reglas de seguridad preestablecidas.</li>
+                <li><span class="highlight">Modems:</span> Convierten señales digitales a analógicas y viceversa para permitir la transmisión a través de líneas telefónicas o cables de fibra/coaxial.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://i.ytimg.com/vi/ctCRRfKTBVQ/sddefault.jpg" alt="Dispositivos Intermediarios" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplos de dispositivos intermediarios: Switch, Router, Access Point.</p>
+            </div>
+
+            <h3>4.3. Medios de Red (Network Media)</h3>
+            <div class="concept-box">
+                <p>Son los canales a través de los cuales viajan los datos. Pueden ser físicos o inalámbricos.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Cables de Cobre:</span>
+                    <ul>
+                        <li><span class="highlight">Par Trenzado (UTP/STP):</span> Los más comunes para redes LAN (ej. cables Ethernet).</li>
+                        <li><span class="highlight">Coaxial:</span> Usado en TV por cable y algunas redes antiguas.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Cables de Fibra Óptica:</span> Transmiten datos usando pulsos de luz. Ofrecen mayor velocidad y distancia, y son inmunes a interferencias electromagnéticas.</li>
+                <li><span class="highlight">Inalámbricos:</span> Transmiten datos a través de ondas de radio, microondas o infrarrojos.
+                    <ul>
+                        <li>Wi-Fi, Bluetooth, 4G/5G (celular), Satélite.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://contenidos.sucerman.com/nivel3/redes/unidad1/img/medios-transmision.jpg" alt="Medios de Red" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplos de medios de red: Cable de Cobre, Fibra Óptica, Ondas Inalámbricas.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Componentes de la Red: Hardware y Software</h2>
+            <p>Más allá de los dispositivos físicos, una red es una combinación de hardware y software trabajando en armonía.</p>
+
+            <h3>5.1. Hardware de Red</h3>
+            <div class="concept-box">
+                <p>Son los <span class="highlight">dispositivos físicos</span> que permiten la conectividad y el transporte de datos.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Tarjetas de Interfaz de Red (NIC - Network Interface Card):</span> Permiten que una computadora se conecte a la red.</li>
+                <li><span class="highlight">Cables de Red:</span> Como los mencionados en los medios (Ethernet, fibra).</li>
+                <li><span class="highlight">Switches y Routers:</span> Dispositivos intermediarios que dirigen el tráfico.</li>
+                <li><span class="highlight">Modems:</span> Para la conexión a proveedores de servicios de Internet (ISP).</li>
+                <li><span class="highlight">Puntos de Acceso Inalámbrico (APs):</span> Para redes Wi-Fi.</li>
+                <li><span class="highlight">Servidores:</span> Hardware potente dedicado a proveer servicios.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://cdn.goconqr.com/uploads/image_clipping/image/158920/red.jpg" alt="Hardware de Red" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplos de hardware de red: NIC, Router Wi-Fi, Switch.</p>
+            </div>
+
+            <h3>5.2. Software de Red</h3>
+            <div class="concept-box">
+                <p>Son los <span class="highlight">programas y protocolos</span> que controlan y gestionan la comunicación y los recursos de la red.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Sistemas Operativos de Red (NOS - Network Operating Systems):</span> Software que gestiona los recursos de la red y permite la comunicación (ej. Windows Server, Linux, Cisco IOS).</li>
+                <li><span class="highlight">Protocolos de Red:</span> Conjuntos de reglas que dictan cómo los datos deben ser formateados, transmitidos y recibidos (ej. TCP/IP, HTTP, FTP). Veremos más a fondo en la próxima sesión.</li>
+                <li><span class="highlight">Aplicaciones de Red:</span> Programas que utilizan la red para funcionar (navegadores web, clientes de correo electrónico, aplicaciones de mensajería, juegos online).</li>
+                <li><span class="highlight">Herramientas de Gestión de Red:</span> Software para monitorear el rendimiento, la seguridad y la configuración de la red.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://www.mindmeister.com/image/xlarge/95160378/mind-map-software-de-redes.png" alt="Software de Red" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplos de software de red: Iconos de Protocolos (TCP/IP), Navegador Web, OS de Servidor.</p>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Identifiquemos y Diseñemos!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: "Adivina el Componente" (15 minutos):</span>
+                    <p>El docente mostrará imágenes de diferentes dispositivos y componentes de red (hardware y software). Los alumnos, en grupos, deberán identificar si es un dispositivo final, intermediario, medio, o un componente de hardware/software, y explicar brevemente su función.</p>
+                    <p><strong>Recurso:</strong> Presentación con imágenes de dispositivos (ej. router casero, switch de 24 puertos, cable Ethernet, servidor rack, smartphone, icono de navegador web, icono de firewall).</p>
+                </li>
+                <li><span class="highlight">Actividad 2: "Diseña tu Red Ideal" en Miro (30 minutos):</span>
+                    <p>En grupos (los mismos de la sesión anterior o nuevos), van a diseñar una red simple para un escenario específico utilizando Miro.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para usar Miro:</h4>
+                        <ol>
+                            <li>El docente asignará a cada grupo un escenario (ej. "Red para una pequeña oficina con 10 empleados", "Red para una cafetería con Wi-Fi para clientes", "Red para tu casa con múltiples dispositivos inteligentes").</li>
+                            <li>Accedan a la pizarra de Miro de su grupo (el docente compartirá los enlaces).</li>
+                            <li>Utilicen las herramientas de Miro (formas, notas adhesivas, líneas de conexión, iconos si los encuentran) para dibujar un diagrama de la red.</li>
+                            <li><span class="highlight">Deben incluir y etiquetar:</span>
+                                <ul>
+                                    <li>Al menos 3-4 dispositivos finales.</li>
+                                    <li>Al menos 1-2 dispositivos intermediarios.</li>
+                                    <li>El tipo de medio de red que usarían (cableado, inalámbrico o ambos).</li>
+                                    <li>Una breve descripción de por qué eligieron esos componentes y cómo se benefician de la red.</li>
+                                </ul>
+                            </li>
+                            <li>Sean creativos y piensen en la lógica de la conectividad.</li>
+                            <li>Al finalizar, cada grupo presentará su diseño a la clase, explicando sus decisiones.</li>
+                        </ol>
+                        <p><strong>Consejo:</strong> Miro tiene una biblioteca de iconos y plantillas que pueden ser útiles para representar dispositivos de red.</p>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 3: Debate Abierto - "La Red del Futuro" (10 minutos):</span>
+                    <p>Para cerrar, abramos un debate rápido:</p>
+                    <p class="quote">"Pensando en las ventajas y elementos de las redes, ¿cuál creen que será el componente o la ventaja más importante en las redes del futuro (ej. en 5-10 años)? ¿Por qué?"</p>
+                    <p>Fomentar la participación y el pensamiento crítico sobre la evolución de las redes.</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>6. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos profundizado en la definición de una red de computadoras, comprendiendo sus inmensas ventajas y desglosando los elementos y componentes fundamentales que la hacen posible. Desde los dispositivos que usamos a diario hasta los complejos equipos que dirigen el tráfico y los medios que lo transportan, cada pieza es crucial para el funcionamiento de la conectividad global.</p>
+            <p>Entender estos cimientos es vital para su rol como analistas de sistemas, ya que les permitirá no solo usar redes, sino también diseñarlas, gestionarlas y solucionar problemas en ellas. En la próxima sesión, nos sumergiremos en los "idiomas" que hablan estos componentes: los Modelos OSI y TCP/IP.</p>
+        </div>
+    </div>
+</body>
+</html>
