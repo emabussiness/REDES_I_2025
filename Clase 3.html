@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3: Modelos de Red: OSI y TCP/IP - El Mapa de las Comunicaciones</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .layer-description {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 3: Modelos de Red: OSI y TCP/IP - El Mapa de las Comunicaciones</h1>
+        <p class="quote">"Si las redes fueran ciudades, los modelos OSI y TCP/IP serían sus planos y mapas, mostrándonos cómo todo encaja."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: Construyendo sobre lo Aprendido</h2>
+            <p>En la sesión anterior, exploramos la definición de redes, sus ventajas y los elementos clave que las componen (dispositivos finales, intermediarios y medios). Hoy, daremos un paso más para entender cómo estos elementos se comunican de manera estructurada.</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "Verdadero o Falso" (5 minutos)</h3>
+                <p>El docente presentará una serie de afirmaciones sobre la sesión anterior. En sus grupos, decidan si la afirmación es verdadera o falsa y prepárense para justificar su respuesta.</p>
+                <ul>
+                    <li>Un router es un ejemplo de dispositivo final. (Falso)</li>
+                    <li>La compartición de recursos es una ventaja clave de las redes. (Verdadero)</li>
+                    <li>Los cables de fibra óptica transmiten datos usando pulsos eléctricos. (Falso - pulsos de luz)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Introducción a los Modelos de Red: ¿Por Qué los Necesitamos?</h2>
+            <p>Imagina que intentas construir un edificio sin planos, o que diferentes equipos de construcción usan medidas y herramientas incompatibles. Sería un caos, ¿verdad?</p>
+            <p>En las redes, sucede algo similar. Para que dispositivos de diferentes fabricantes y tecnologías puedan comunicarse entre sí, necesitamos un <span class="highlight">lenguaje y una estructura estandarizada</span>. Aquí es donde entran los modelos de red.</p>
+            <div class="concept-box">
+                <h3>Término: Modelo de Red</h3>
+                <p>Un <span class="highlight">modelo de red</span> es un marco conceptual que divide las funciones de comunicación de una red en un conjunto de capas o niveles. Cada capa tiene responsabilidades específicas y se comunica con las capas adyacentes.</p>
+            </div>
+            <h3>Propósitos de los Modelos de Red:</h3>
+            <ul>
+                <li><span class="highlight">Estandarización:</span> Permite que fabricantes de hardware y desarrolladores de software creen productos compatibles.</li>
+                <li><span class="highlight">Modularidad:</span> Divide la complejidad de la red en partes más pequeñas y manejables.</li>
+                <li><span class="highlight">Interoperabilidad:</span> Asegura que diferentes sistemas puedan comunicarse entre sí.</li>
+                <li><span class="highlight">Facilita el Aprendizaje y el Diseño:</span> Proporciona una estructura lógica para entender y diseñar redes.</li>
+                <li><span class="highlight">Resolución de Problemas (Troubleshooting):</span> Permite aislar y diagnosticar problemas en una capa específica.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. El Modelo OSI (Open Systems Interconnection)</h2>
+            <p>El Modelo OSI, desarrollado por la Organización Internacional de Normalización (ISO) en la década de 1980, es un marco de referencia conceptual que describe cómo la información se mueve a través de una red. Aunque el modelo TCP/IP es el que se usa en la práctica, OSI es fundamental para entender los principios de la comunicación en red.</p>
+            <div class="concept-box">
+                <h3>Término: Modelo OSI</h3>
+                <p>Un modelo de <span class="highlight">7 capas</span> que describe las funciones necesarias para la comunicación de red, desde la aplicación del usuario hasta el medio físico.</p>
+            </div>
+            <div class="image-placeholder">
+                <img src="https://www.elingesor.com/wp-content/uploads/2019/05/osi.jpg" alt="Diagrama Modelo OSI 7 Capas" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Representación visual del Modelo OSI con sus 7 capas.</p>
+            </div>
+            <h3>Las 7 Capas del Modelo OSI:</h3>
+            <p>Para recordar las capas de abajo hacia arriba, una mnemotécnica común es: <span class="highlight">"Por Favor No Tires Seis Perros Alguien"</span> o <span class="highlight">"Aplicaciones Presentan Sesiones de Transporte de Red de Datos Físicos"</span> (de arriba hacia abajo).</p>
+            <ol reversed>
+                <li>
+                    <h4>Capa 1: Física (Physical Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Define las especificaciones eléctricas, mecánicas, de procedimiento y funcionales para activar, mantener y desactivar el enlace físico entre sistemas. Se encarga de la transmisión de bits puros sobre un medio de comunicación.</p>
+                        <p><strong>Ejemplos:</strong> Cables (Ethernet, fibra óptica), conectores (RJ45), voltajes, tasas de bits, hubs, repetidores.</p>
+                        <p><strong>PDU:</strong> Bits</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa 2: Enlace de Datos (Data Link Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Proporciona un tránsito de datos fiable a través de un enlace físico. Se encarga del direccionamiento físico (MAC), control de flujo y detección/corrección de errores en el nivel de enlace.</p>
+                        <p><strong>Ejemplos:</strong> Direcciones MAC, tramas Ethernet, PPP (Point-to-Point Protocol), switches de capa 2.</p>
+                        <p><strong>PDU:</strong> Trama (Frame)</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa 3: Red (Network Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Proporciona servicios para intercambiar segmentos de datos individuales entre dispositivos finales a través de una red. Se encarga del direccionamiento lógico (IP) y el enrutamiento (routing) de paquetes.</p>
+                        <p><strong>Ejemplos:</strong> Direcciones IP (IPv4, IPv6), routers, protocolos de enrutamiento (RIP, OSPF).</p>
+                        <p><strong>PDU:</strong> Paquete (Packet)</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa 4: Transporte (Transport Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Segmenta los datos de las aplicaciones para su transporte a través de la red y reensambla los datos recibidos. Proporciona servicios de comunicación de extremo a extremo, incluyendo control de flujo y fiabilidad (orientado a conexión como TCP) o rapidez (sin conexión como UDP).</p>
+                        <p><strong>Ejemplos:</strong> TCP (Transmission Control Protocol), UDP (User Datagram Protocol), números de puerto.</p>
+                        <p><strong>PDU:</strong> Segmento (Segment - TCP), Datagrama (Datagram - UDP)</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa 5: Sesión (Session Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Establece, gestiona y termina las sesiones de comunicación entre aplicaciones. Controla el diálogo entre los procesos de las aplicaciones.</p>
+                        <p><strong>Ejemplos:</strong> NetBIOS, RPC (Remote Procedure Call), SQL.</p>
+                        <p><strong>PDU:</strong> Datos</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa 6: Presentación (Presentation Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Traduce, comprime y cifra los datos para asegurar que los datos de la capa de aplicación de un sistema puedan ser leídos por la capa de aplicación de otro. Maneja la sintaxis y la semántica de la información.</p>
+                        <p><strong>Ejemplos:</strong> JPEG, MPEG, ASCII, cifrado (SSL/TLS).</p>
+                        <p><strong>PDU:</strong> Datos</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa 7: Aplicación (Application Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Proporciona servicios de red directamente a las aplicaciones del usuario. Es la capa más cercana al usuario final.</p>
+                        <p><strong>Ejemplos:</strong> HTTP (navegación web), FTP (transferencia de archivos), SMTP (correo electrónico), DNS (resolución de nombres de dominio).</p>
+                        <p><strong>PDU:</strong> Datos</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>4. El Modelo TCP/IP (Transmission Control Protocol/Internet Protocol)</h2>
+            <p>El Modelo TCP/IP es el conjunto de protocolos que realmente impulsan Internet y la mayoría de las redes modernas. Fue desarrollado antes que el modelo OSI y es más práctico, consolidando algunas de las capas de OSI.</p>
+            <div class="concept-box">
+                <h3>Término: Modelo TCP/IP</h3>
+                <p>Un modelo de <span class="highlight">4 (o 5) capas</span> que define cómo los datos deben ser empaquetados, direccionados, transmitidos, enrutados y recibidos.</p>
+            </div>
+            <div class="image-placeholder">
+                <img src="https://interpolados.wordpress.com/wp-content/uploads/2017/03/19.png" alt="Diagrama Modelo TCP/IP 4 Capas" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Representación visual del Modelo TCP/IP con sus capas.</p>
+            </div>
+            <h3>Las Capas del Modelo TCP/IP:</h3>
+            <ol>
+                <li>
+                    <h4>Capa de Acceso a la Red (Network Access Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Combina las funciones de las capas Física y de Enlace de Datos del modelo OSI. Se encarga de los detalles de cómo los datos son enviados físicamente a través de la red (hardware, controladores de dispositivo, direcciones MAC).</p>
+                        <p><strong>Ejemplos:</strong> Ethernet, Wi-Fi, controladores de tarjeta de red.</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa de Internet (Internet Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Equivalente a la capa de Red del modelo OSI. Se encarga del direccionamiento lógico (IP) y el enrutamiento de paquetes entre diferentes redes.</p>
+                        <p><strong>Ejemplos:</strong> IP (Internet Protocol), ICMP (Internet Control Message Protocol).</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa de Transporte (Transport Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Equivalente a la capa de Transporte del modelo OSI. Proporciona comunicación de extremo a extremo entre aplicaciones, incluyendo segmentación, control de flujo y fiabilidad.</p>
+                        <p><strong>Ejemplos:</strong> TCP (Transmission Control Protocol), UDP (User Datagram Protocol).</p>
+                    </div>
+                </li>
+                <li>
+                    <h4>Capa de Aplicación (Application Layer)</h4>
+                    <div class="layer-description">
+                        <p><strong>Función:</strong> Combina las funciones de las capas de Sesión, Presentación y Aplicación del modelo OSI. Proporciona servicios de red a las aplicaciones del usuario.</p>
+                        <p><strong>Ejemplos:</strong> HTTP, FTP, SMTP, DNS.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>5. Comparación y Relación entre OSI y TCP/IP</h2>
+            <p>Aunque tienen diferente número de capas, sus funciones son muy similares:</p>
+            <div class="image-placeholder">
+                <img src="https://static.platzi.com/media/user_upload/diferencias%20modelos%20tcp%20-%20osi-226ebd4f-bb5e-41f1-9e5c-140cb7f69abc.jpg" alt="Comparacion OSI vs TCP/IP" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Tabla comparativa visual de las capas de OSI y TCP/IP.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">OSI:</span> Es un modelo <span class="highlight">conceptual</span>. Es excelente para entender los procesos de red y para el troubleshooting.</li>
+                <li><span class="highlight">TCP/IP:</span> Es un modelo <span class="highlight">funcional y práctico</span>. Es el que se implementa realmente en Internet.</li>
+            </ul>
+            <div class="example-box">
+                <h3>El Proceso de Encapsulación y Desencapsulación (PDU)</h3>
+                <p>Cuando envías un mensaje, tus datos viajan "hacia abajo" por las capas del modelo, y cada capa añade su propia información de control (encabezados). Esto se llama <span class="highlight">encapsulación</span>. Al llegar al destino, los datos viajan "hacia arriba", y cada capa elimina el encabezado que le corresponde, en un proceso llamado <span class="highlight">desencapsulación</span>.</p>
+                <p><strong>PDU (Protocol Data Unit):</strong> Es la unidad de datos en cada capa. Por ejemplo:</p>
+                <ul>
+                    <li>Capa de Aplicación: Datos</li>
+                    <li>Capa de Transporte: Segmento (TCP) / Datagrama (UDP)</li>
+                    <li>Capa de Red: Paquete</li>
+                    <li>Capa de Enlace de Datos: Trama</li>
+                    <li>Capa Física: Bits</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Aplicaciones Prácticas de los Modelos</h2>
+            <p>Conocer estos modelos no es solo teoría; es una herramienta poderosa para entender y solucionar problemas en redes.</p>
+            <ul>
+                <li><span class="highlight">Diagnóstico de Problemas:</span> Si no puedes acceder a una página web, ¿es un problema de cable (Capa 1), de dirección IP (Capa 3), o del servidor web (Capa 7)? Los modelos te ayudan a acotar el problema.</li>
+                <li><span class="highlight">Diseño de Redes:</span> Permiten diseñar redes de manera estructurada, asegurando que los componentes de cada capa sean compatibles.</li>
+                <li><span class="highlight">Desarrollo de Aplicaciones:</span> Los desarrolladores saben qué servicios esperar de las capas inferiores.</li>
+                <li><span class="highlight">Seguridad:</span> Entender cómo funcionan las capas ayuda a identificar vulnerabilidades y aplicar medidas de seguridad en el nivel correcto.</li>
+            </ul>
+            <div class="example-box">
+                <h3>Ejemplo: Una Petición Web (HTTP)</h3>
+                <ol>
+                    <li><span class="highlight">Capa de Aplicación (OSI L7 / TCP/IP Aplicación):</span> Tu navegador (HTTP) solicita una página web.</li>
+                    <li><span class="highlight">Capa de Presentación (OSI L6):</span> Los datos HTML/CSS/JS se preparan para la transmisión.</li>
+                    <li><span class="highlight">Capa de Sesión (OSI L5):</span> Se establece una sesión para tu navegación.</li>
+                    <li><span class="highlight">Capa de Transporte (OSI L4 / TCP/IP Transporte):</span> Los datos se dividen en segmentos (TCP) y se les asignan números de puerto (ej. 80 para HTTP).</li>
+                    <li><span class="highlight">Capa de Red (OSI L3 / TCP/IP Internet):</span> Cada segmento se encapsula en un paquete IP, se le añade la dirección IP de origen y destino.</li>
+                    <li><span class="highlight">Capa de Enlace de Datos (OSI L2 / TCP/IP Acceso a la Red):</span> El paquete se encapsula en una trama, se le añade la dirección MAC de origen y destino del siguiente salto.</li>
+                    <li><span class="highlight">Capa Física (OSI L1 / TCP/IP Acceso a la Red):</span> La trama se convierte en bits y se envía a través del cable o el aire.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Jugando con las Capas!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: "Construye tu PDU" en Miro (25 minutos):</span>
+                    <p>En grupos, utilizarán Miro para simular el proceso de encapsulación y desencapsulación de datos a través de las capas de la red.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para usar Miro:</h4>
+                        <ol>
+                            <li>El docente proporcionará un enlace a una pizarra de Miro para cada grupo.</li>
+                            <li>En la pizarra, encontrarán elementos predefinidos (o los crearán): "Datos de Aplicación", "Encabezado de Sesión", "Encabezado de Presentación", "Encabezado de Transporte (TCP/UDP)", "Encabezado de Red (IP)", "Encabezado de Enlace de Datos (Ethernet)", y "Bits".</li>
+                            <li><strong>Tarea del Grupo:</strong>
+                                <ul>
+                                    <li><strong>Encapsulación (Envío):</strong> Partiendo de los "Datos de Aplicación", arrastren y coloquen los diferentes "Encabezados" en el orden correcto (de arriba hacia abajo en OSI) para formar un Segmento, luego un Paquete, y finalmente una Trama. Pueden añadir notas adhesivas explicando qué información añade cada encabezado.</li>
+                                    <li><strong>Desencapsulación (Recepción):</strong> Luego, inviertan el proceso. Partiendo de los "Bits" que forman una Trama, eliminen los encabezados en el orden correcto (de abajo hacia arriba) hasta llegar a los "Datos de Aplicación" originales.</li>
+                                </ul>
+                            </li>
+                            <li>Utilicen flechas y texto para indicar el flujo de los datos y las transformaciones en cada capa.</li>
+                            <li>Al finalizar, cada grupo presentará su "Recorrido de la PDU" a la clase.</li>
+                        </ol>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 2: "¿Qué Capa Soy?" - Juego de Roles o Tarjetas (20 minutos):</span>
+                    <p>El docente tendrá tarjetas con descripciones de funciones, dispositivos o protocolos. Los grupos deberán identificar a qué capa del modelo OSI (y su equivalente en TCP/IP) corresponde.</p>
+                    <p><strong>Ejemplos de Tarjetas:</strong></p>
+                    <ul>
+                        <li>"Soy responsable de las direcciones MAC." (Capa 2: Enlace de Datos)</li>
+                        <li>"Me encargo de los cables y los voltajes." (Capa 1: Física)</li>
+                        <li>"Soy el protocolo HTTP." (Capa 7: Aplicación)</li>
+                        <li>"Mi trabajo es el enrutamiento de paquetes entre redes." (Capa 3: Red)</li>
+                        <li>"Me preocupo por la fiabilidad de la entrega de extremo a extremo (TCP)." (Capa 4: Transporte)</li>
+                        <li>"Soy un router." (Principalmente Capa 3: Red)</li>
+                        <li>"Soy un switch." (Principalmente Capa 2: Enlace de Datos)</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>7. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos desentrañado los "planos" de las redes: los modelos OSI y TCP/IP. Comprender estas arquitecturas por capas es fundamental para cualquier analista de sistemas, ya que les permite entender cómo se comunican los dispositivos, cómo se organizan los protocolos y, lo que es más importante, cómo diagnosticar y resolver problemas de red de manera metódica.</p>
+            <p>Aunque el modelo TCP/IP es la base de Internet, el modelo OSI sigue siendo una herramienta conceptual invaluable para el aprendizaje y la resolución de problemas. En la próxima sesión, profundizaremos en los Protocolos y Estándares de Red, que son las reglas específicas que operan dentro de estas capas.</p>
+        </div>
+    </div>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
