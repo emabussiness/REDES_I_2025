@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4: Principios de Redes - Protocolos y Estándares de Red</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #0056b3;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 4: Principios de Redes - Protocolos y Estándares de Red</h1>
+        <p class="quote">"Los protocolos son el lenguaje secreto de las redes, permitiendo que dispositivos de todo el mundo se entiendan entre sí."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: Navegando por las Capas</h2>
+            <p>En nuestra sesión anterior, desglosamos los modelos OSI y TCP/IP, entendiendo cómo la comunicación en red se organiza en capas. Hoy, nos centraremos en las "reglas del juego" dentro de esas capas: los protocolos y estándares.</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "Asocia la Capa" (5 minutos)</h3>
+                <p>El docente mencionará una función o un dispositivo. En voz alta, digan a qué capa del modelo OSI (y su equivalente en TCP/IP) creen que pertenece.</p>
+                <ul>
+                    <li>"Direcciones IP" (Capa 3: Red / Capa de Internet)</li>
+                    <li>"Cables Ethernet" (Capa 1: Física / Capa de Acceso a la Red)</li>
+                    <li>"Navegador web (HTTP)" (Capa 7: Aplicación / Capa de Aplicación)</li>
+                    <li>"Un switch que reenvía tramas por dirección MAC" (Capa 2: Enlace de Datos / Capa de Acceso a la Red)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Protocolos y Estándares de Red: El Lenguaje Común</h2>
+            <p>Para que dos dispositivos, quizás de diferentes fabricantes, puedan comunicarse, necesitan hablar el mismo "idioma" y seguir las mismas "reglas". Aquí es donde entran los protocolos y estándares.</p>
+            <div class="concept-box">
+                <h3>Término: Protocolo de Red</h3>
+                <p>Un <span class="highlight">protocolo de red</span> es un conjunto de reglas y formatos predefinidos que rigen cómo los datos deben ser formateados, transmitidos, recibidos y procesados en una red. Esencialmente, es el "idioma" que los dispositivos usan para comunicarse.</p>
+            </div>
+            <div class="concept-box">
+                <h3>Término: Estándar de Red</h3>
+                <p>Un <span class="highlight">estándar de red</span> es un conjunto de especificaciones o directrices formales, generalmente desarrolladas por organizaciones de estandarización (como IEEE, ISO, IETF), que aseguran la interoperabilidad entre diferentes productos y tecnologías de red.</p>
+            </div>
+            <h3>Importancia de Protocolos y Estándares:</h3>
+            <ul>
+                <li><span class="highlight">Interoperabilidad:</span> Permiten que dispositivos de distintos fabricantes (ej. un router Cisco con una PC Dell) se comuniquen sin problemas.</li>
+                <li><span class="highlight">Comunicación Coherente:</span> Aseguran que todos los dispositivos entiendan el formato de los datos y los pasos de la comunicación.</li>
+                <li><span class="highlight">Innovación y Competencia:</span> Al tener estándares abiertos, cualquier empresa puede desarrollar productos que cumplan con ellos, fomentando la competencia y la innovación.</li>
+                <li><span class="highlight">Facilita el Desarrollo:</span> Los desarrolladores saben qué esperar y cómo interactuar con otros sistemas.</li>
+                <li><span class="highlight">Resolución de Problemas:</span> Si algo falla, se puede verificar si se están siguiendo los protocolos y estándares.</li>
+            </ul>
+            <div class="example-box">
+                <h3>Analogía: Idiomas y Señales de Tráfico</h3>
+                <p>Imagina que intentas hablar con alguien que no comparte tu idioma. Necesitarías un protocolo (ej. un traductor o un lenguaje de señas común). De igual forma, las señales de tráfico son un estándar: todos sabemos que un semáforo en rojo significa "detenerse", independientemente del país.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Redes Orientadas a Conexión vs. No Orientadas a Conexión</h2>
+            <p>La forma en que los protocolos manejan el establecimiento y la gestión de la comunicación es fundamental. Aquí distinguimos dos enfoques principales:</p>
+
+            <h3>3.1. Redes Orientadas a Conexión (Connection-Oriented)</h3>
+            <div class="concept-box">
+                <p>Requieren que se establezca una <span class="highlight">conexión lógica</span> entre el emisor y el receptor antes de que se envíen los datos. Una vez que la comunicación termina, la conexión se cierra.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Fiabilidad:</span> Garantizan la entrega de los datos, el orden correcto y la retransmisión de paquetes perdidos.</li>
+                <li><span class="highlight">Control de Flujo:</span> Aseguran que el emisor no sature al receptor con demasiados datos.</li>
+                <li><span class="highlight">Control de Congestión:</span> Ayudan a evitar que la red se colapse por exceso de tráfico.</li>
+                <li><span class="highlight">Mayor Sobrecarga:</span> Requieren más recursos y tiempo para establecer y mantener la conexión.</li>
+            </ul>
+            <div class="example-box">
+                <h3>Ejemplo: TCP (Transmission Control Protocol)</h3>
+                <p>TCP es el protocolo más conocido de este tipo (Capa de Transporte). Cuando navegas por una página web (HTTP usa TCP), tu navegador y el servidor web establecen una conexión "de tres vías" (three-way handshake) antes de que los datos de la página empiecen a fluir. Esto asegura que la página se cargue completa y sin errores.</p>
+                <div class="image-placeholder">
+                    <img src="https://saberpunto.com/wp-content/uploads/protocolos-de-transporte-tcp-y-udp-como-funcionan.jpg" alt="Diagrama de Three-way Handshake de TCP" style="max-width: 100%; height: auto; border-radius: 5px;">
+                    <p>Proceso de establecimiento de conexión TCP.</p>
+                </div>
+            </div>
+
+            <h3>3.2. Redes No Orientadas a Conexión (Connectionless)</h3>
+            <div class="concept-box">
+                <p>No requieren el establecimiento de una conexión previa. Los datos se envían como <span class="highlight">paquetes independientes</span>, sin garantía de entrega, orden o duplicación.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Rapidez:</span> Menor sobrecarga, lo que los hace más rápidos para la transmisión.</li>
+                <li><span class="highlight">Eficiencia:</span> Ideales para aplicaciones donde la velocidad es más importante que la fiabilidad absoluta.</li>
+                <li><span class="highlight">No hay garantía:</span> Si un paquete se pierde, no se retransmite automáticamente.</li>
+            </ul>
+            <div class="example-box">
+                <h3>Ejemplo: UDP (User Datagram Protocol)</h3>
+                <p>UDP es el protocolo no orientado a conexión por excelencia (Capa de Transporte). Se usa en aplicaciones donde la pérdida de algunos datos es aceptable a cambio de velocidad, como:</p>
+                <ul>
+                    <li><span class="highlight">Streaming de video en vivo:</span> Es mejor perder un par de fotogramas que tener el video pausándose constantemente.</li>
+                    <li><span class="highlight">Juegos online:</span> La latencia es crítica; es preferible un pequeño "lag" que una pausa para retransmitir datos.</li>
+                    <li><span class="highlight">DNS (Domain Name System):</span> Las consultas suelen ser pequeñas y rápidas, y si fallan, se pueden reintentar fácilmente.</li>
+                </ul>
+            </div>
+            <div class="table-container">
+                <h3>Comparación TCP vs. UDP:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>TCP (Orientado a Conexión)</th>
+                            <th>UDP (No Orientado a Conexión)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fiabilidad</td>
+                            <td>Alta (garantiza entrega, orden, sin duplicados)</td>
+                            <td>Baja (no garantiza entrega ni orden)</td>
+                        </tr>
+                        <tr>
+                            <td>Control de Flujo</td>
+                            <td>Sí</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Control de Congestión</td>
+                            <td>Sí</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Establecimiento Conexión</td>
+                            <td>Sí (Three-way Handshake)</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Velocidad</td>
+                            <td>Más lento (por la sobrecarga)</td>
+                            <td>Más rápido (menos sobrecarga)</td>
+                        </tr>
+                        <tr>
+                            <td>Aplicaciones Típicas</td>
+                            <td>Web (HTTP), Correo (SMTP, POP3), Transferencia de Archivos (FTP)</td>
+                            <td>Streaming de Video/Audio, Juegos Online, DNS, VoIP</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Transmisión Sincrónica y Asincrónica</h2>
+            <p>Además de cómo se establece la conexión, la forma en que los bits individuales se envían en el tiempo también es crucial.</p>
+
+            <h3>4.1. Transmisión Asincrónica</h3>
+            <div class="concept-box">
+                <p>Los datos se envían en <span class="highlight">bloques de caracteres o bytes</span>, con bits de inicio y parada que marcan el principio y el fin de cada unidad de datos. No se requiere una señal de reloj compartida entre emisor y receptor.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Sencillez:</span> Menos compleja de implementar.</li>
+                <li><span class="highlight">Menor Eficiencia:</span> La sobrecarga de los bits de inicio/parada reduce la eficiencia para grandes volúmenes de datos.</li>
+                <li><span class="highlight">Ejemplo:</span> Puertos seriales (RS-232), módems antiguos.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://katyyeli.wordpress.com/wp-content/uploads/2014/09/b52a2-asincrona.jpg?w=640" alt="Transmision Asincronica Bits" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Representación de bits de inicio/parada en transmisión asincrónica.</p>
+            </div>
+
+            <h3>4.2. Transmisión Sincrónica</h3>
+            <div class="concept-box">
+                <p>Los datos se envían en <span class="highlight">bloques grandes de bits</span>, sin bits de inicio/parada entre cada byte. El emisor y el receptor utilizan una <span class="highlight">señal de reloj compartida</span> (o incrustada en los datos) para sincronizar la transmisión y la recepción.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Mayor Eficiencia:</span> Menos sobrecarga, ideal para grandes volúmenes de datos.</li>
+                <li><span class="highlight">Mayor Complejidad:</span> Requiere mecanismos de sincronización más sofisticados.</li>
+                <li><span class="highlight">Ejemplo:</span> Ethernet, Wi-Fi, la mayoría de las comunicaciones de alta velocidad en redes modernas.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://mtlsasturiasnoe.wordpress.com/wp-content/uploads/2015/10/sincrono.png" alt="Transmision Sincronica Bits" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Representación de un flujo continuo de bits en transmisión sincrónica.</p>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Explorando Protocolos!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: Introducción a Wireshark: Observando Protocolos en Acción (Video - 20 minutos):</span>
+                    <p>Para entender cómo se "ven" los protocolos en la vida real, veremos un video que explica qué es Wireshark y cómo se utiliza para capturar y analizar el tráfico de red. Presten atención a cómo se muestran los diferentes protocolos y sus encabezados.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/j86mlJz64eA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Objetivo:</strong> Familiarizarse visualmente con una herramienta de análisis de protocolos y comprender que los protocolos son estructuras de datos reales que viajan por la red.</p>
+                </li>
+                <li><span class="highlight">Actividad 2: Juego de Roles: "El Protocolo de Mensajería Secreta" (25 minutos):</span>
+                    <p>En grupos, diseñarán y ejecutarán un protocolo de comunicación para enviar un "mensaje secreto" sin hablar, explorando la importancia de las reglas y las diferencias entre fiabilidad y velocidad.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para el Juego de Roles:</h4>
+                        <ol>
+                            <li>Formen grupos de 4-5 personas. Cada grupo recibirá un "mensaje secreto" corto (una frase simple, ej. "REDES SON GENIALES").</li>
+                            <li><strong>Tarea del Grupo: Diseñar un "Protocolo de Mensajería Secreta"</strong>
+                                <p>Imaginen que deben enviar su mensaje secreto de un extremo del aula al otro, sin hablar. Solo pueden usar gestos, señales o movimientos predefinidos. Deben definir un protocolo que incluya:</p>
+                                <ul>
+                                    <li><span class="highlight">Codificación del mensaje:</span> ¿Cómo representarán cada letra o palabra con gestos/señales? (Ej. un gesto para "A", otro para "B", o un sistema numérico).</li>
+                                    <li><span class="highlight">Inicio de la transmisión:</span> ¿Cómo el emisor indica que va a empezar a enviar?</li>
+                                    <li><span class="highlight">Confirmación de recepción (ACK):</span> ¿Cómo el receptor indica que recibió una parte del mensaje correctamente? (Ej. pulgar arriba).</li>
+                                    <li><span class="highlight">Solicitud de retransmisión (NACK):</span> ¿Cómo el receptor pide que se repita una parte si no la entendió? (Ej. pulgar abajo).</li>
+                                    <li><span class="highlight">Fin de la transmisión:</span> ¿Cómo el emisor indica que ha terminado el mensaje?</li>
+                                </ul>
+                            </li>
+                            <li><strong>Variantes de Ejecución (El docente indicará cuál usar):</strong>
+                                <ul>
+                                    <li><span class="highlight">Opción A (Orientado a Conexión - Fiable):</span> El emisor no puede enviar la siguiente parte del mensaje hasta que reciba una confirmación (ACK) de la parte anterior. Prioridad: ¡Que el mensaje llegue completo y correcto!</li>
+                                    <li><span class="highlight">Opción B (No Orientado a Conexión - Rápido):</span> El emisor envía el mensaje continuamente, parte tras parte, sin esperar confirmaciones. Si el receptor no entiende algo, lo anota y el emisor simplemente sigue. Prioridad: ¡Enviar el mensaje lo más rápido posible!</li>
+                                </ul>
+                            </li>
+                            <li>Escriban los pasos de su protocolo en una hoja.</li>
+                            <li><strong>Actuación:</strong> Dos miembros del grupo se colocarán en extremos opuestos del aula. Uno será el "Emisor" y el otro el "Receptor". El resto del grupo puede ser "observadores" o "depuradores" del protocolo. Ejecuten su protocolo para enviar el mensaje secreto.</li>
+                            <li><strong>Análisis Post-Actividad:</strong> Después de cada actuación, la clase y el docente discutirán:
+                                <ul>
+                                    <li>¿Qué tan fácil fue seguir el protocolo?</li>
+                                    <li>¿Se entendió el mensaje? ¿Hubo errores?</li>
+                                    <li>¿Qué ventajas y desventajas tuvo la Opción A (fiable) vs. la Opción B (rápida)?</li>
+                                    <li>¿Qué similitudes encuentran con TCP y UDP?</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Experimentar de primera mano la necesidad de reglas claras para la comunicación y las diferencias prácticas entre enfoques orientados y no orientados a conexión.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>5. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos descubierto que los protocolos y estándares son el andamiaje invisible que permite que nuestras redes funcionen. Son las reglas que garantizan que cada bit de información llegue a su destino y sea entendido, sin importar el dispositivo o la tecnología.</p>
+            <p>Hemos diferenciado entre la fiabilidad de las comunicaciones orientadas a conexión (como TCP) y la velocidad de las no orientadas a conexión (como UDP), y explorado cómo el tiempo juega un papel en la transmisión sincrónica y asincrónica.</p>
+            <p>Comprender estos principios es crucial para cualquier analista de sistemas, ya que les permitirá no solo diagnosticar problemas, sino también diseñar soluciones de red más robustas y eficientes. En la próxima sesión, nos adentraremos en los tipos de redes y sus topologías.</p>
+        </div>
+    </div>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
