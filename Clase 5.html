@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5: Redes Geográficamente Distribuidas, Topologías y Conmutación</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 5: Redes Geográficamente Distribuidas, Topologías y Conmutación</h1>
+        <p class="quote">"La forma en que conectamos los puntos define la estructura y el alma de nuestra red."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: El Lenguaje de la Red</h2>
+            <p>En la sesión anterior, exploramos el fascinante mundo de los protocolos y estándares, entendiendo cómo los dispositivos "hablan" entre sí y la diferencia entre comunicaciones orientadas y no orientadas a conexión. Hoy, vamos a visualizar cómo se organizan físicamente las redes y cómo los datos encuentran su camino a través de ellas.</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "TCP o UDP?" (5 minutos)</h3>
+                <p>El docente mencionará una aplicación o escenario. En voz alta, digan si creen que usaría principalmente TCP o UDP y por qué.</p>
+                <ul>
+                    <li>"Una videollamada en tiempo real" (UDP, por la velocidad, aunque puede haber TCP para control)</li>
+                    <li>"Descargar un archivo de un servidor FTP" (TCP, por la fiabilidad y la necesidad de que el archivo llegue completo)</li>
+                    <li>"Navegar por una página web" (TCP, para asegurar que todo el contenido de la página se cargue correctamente)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Redes Geográficamente Distribuidas: El Alcance de la Conectividad</h2>
+            <p>Las redes no son todas iguales; varían enormemente en tamaño y el área geográfica que cubren. Esta clasificación nos ayuda a entender su propósito y las tecnologías que utilizan.</p>
+
+            <h3>2.1. PAN (Personal Area Network - Red de Área Personal)</h3>
+            <div class="concept-box">
+                <p>Red de muy corto alcance, generalmente alrededor de una persona. Conecta dispositivos personales como smartphones, auriculares, smartwatches, etc.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Alcance:</span> Pocos metros (hasta 10-20m).</li>
+                <li><span class="highlight">Tecnologías:</span> Bluetooth, USB, NFC.</li>
+                <li><span class="highlight">Ejemplo:</span> Conectar tu celular a unos auriculares inalámbricos o a la computadora para transferir fotos.</li>
+            </ul>
+
+            <h3>2.2. LAN (Local Area Network - Red de Área Local)</h3>
+            <div class="concept-box">
+                <p>Conecta dispositivos en un área geográfica limitada, como una casa, oficina, edificio o campus universitario. Son las redes más comunes y las que probablemente usan a diario.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Alcance:</span> Decenas a cientos de metros.</li>
+                <li><span class="highlight">Tecnologías:</span> Ethernet (cableada), Wi-Fi (inalámbrica).</li>
+                <li><span class="highlight">Ejemplo:</span> La red de computadoras en un salón de clases, la red de tu casa que conecta tu PC, impresora y smart TV.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://interpolados.wordpress.com/wp-content/uploads/2017/02/114.png" alt="Diagrama de Red de Área Local (LAN)" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplo de una Red de Área Local (LAN).</p>
+            </div>
+
+            <h3>2.3. MAN (Metropolitan Area Network - Red de Área Metropolitana)</h3>
+            <div class="concept-box">
+                <p>Conecta múltiples LANs dentro de un área geográfica más grande, como una ciudad o un campus universitario extenso. Son propiedad de una organización o un proveedor de servicios.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Alcance:</span> Varias decenas de kilómetros (hasta 50-100 km).</li>
+                <li><span class="highlight">Tecnologías:</span> Ethernet de alta velocidad, fibra óptica, WiMAX.</li>
+                <li><span class="highlight">Ejemplo:</span> La red que conecta diferentes sucursales de un banco en una ciudad, o la red de una universidad con varios edificios dispersos.</li>
+            </ul>
+
+            <h3>2.4. WAN (Wide Area Network - Red de Área Extensa)</h3>
+            <div class="concept-box">
+                <p>Conecta redes a través de grandes distancias geográficas, como ciudades, países o incluso continentes. Suelen usar infraestructuras de telecomunicaciones públicas o privadas.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Alcance:</span> Cientos a miles de kilómetros.</li>
+                <li><span class="highlight">Tecnologías:</span> Líneas arrendadas, MPLS, satélite, fibra óptica de larga distancia.</li>
+                <li><span class="highlight">Ejemplo:</span> Internet es la WAN más grande del mundo. La red que conecta las oficinas de una empresa multinacional en diferentes países.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://static.wikia.nocookie.net/infotic/images/5/5e/WAN.gif/revision/latest?cb=20170828042938&path-prefix=es" alt="Diagrama de Red de Área Extensa (WAN)" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplo de una Red de Área Extensa (WAN).</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Topologías de Red: La Forma de la Conexión</h2>
+            <p>La topología de red se refiere a la <span class="highlight">disposición física o lógica</span> de los dispositivos y sus conexiones en una red. La elección de una topología afecta el rendimiento, la fiabilidad y el costo de la red.</p>
+
+            <h3>3.1. Topología de Bus</h3>
+            <div class="concept-box">
+                <p>Todos los dispositivos están conectados a un <span class="highlight">único cable central</span> (bus). Los datos viajan en ambas direcciones a lo largo del bus.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Fácil de instalar, requiere menos cable.</li>
+                <li><span class="highlight">Desventajas:</span> Un fallo en el cable central detiene toda la red. Dificultad para diagnosticar problemas. Rendimiento bajo con muchos dispositivos.</li>
+                <li><span class="highlight">Uso:</span> Redes antiguas, poco común hoy en día.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://www.shutterstock.com/image-vector/bus-topology-diagram-network-illustration-260nw-2446464915.jpg" alt="Diagrama Topología de Bus" style="max-width: 100%; height: auto; border-radius: 5px;">
+            </div>
+
+            <h3>3.2. Topología de Estrella</h3>
+            <div class="concept-box">
+                <p>Todos los dispositivos están conectados a un <span class="highlight">dispositivo central</span> (generalmente un switch o hub).</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Fácil de instalar y configurar. Un fallo en un cable individual no afecta al resto de la red. Fácil de diagnosticar problemas. Buen rendimiento.</li>
+                <li><span class="highlight">Desventajas:</span> Si el dispositivo central falla, toda la red se cae. Requiere más cable.</li>
+                <li><span class="highlight">Uso:</span> La topología más común en las redes LAN modernas.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://elingesor.com/wp-content/uploads/2021/02/Star_Topology.png" alt="Diagrama Topología de Estrella" style="max-width: 100%; height: auto; border-radius: 5px;">
+            </div>
+
+            <h3>3.3. Topología de Anillo</h3>
+            <div class="concept-box">
+                <p>Los dispositivos están conectados en un <span class="highlight">círculo cerrado</span>, formando un anillo. Los datos viajan en una dirección (o ambas) alrededor del anillo.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Rendimiento constante bajo carga.</li>
+                <li><span class="highlight">Desventajas:</span> Un fallo en un cable o dispositivo puede romper el anillo. Dificultad para añadir o quitar dispositivos.</li>
+                <li><span class="highlight">Uso:</span> Redes Token Ring (históricas), algunas redes de fibra óptica (FDDI).</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://i.ytimg.com/vi/92OsBDfStvA/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGFcgYShlMA8=&rs=AOn4CLB6P9xZJyMwnYfLCF8WvF3YiNEEBw" alt="Diagrama Topología de Anillo" style="max-width: 100%; height: auto; border-radius: 5px;">
+            </div>
+
+            <h3>3.4. Topología de Malla (Mesh)</h3>
+            <div class="concept-box">
+                <p>Cada dispositivo está <span class="highlight">conectado directamente a todos los demás</span> dispositivos de la red (malla completa) o a múltiples dispositivos (malla parcial).</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Muy robusta y tolerante a fallos (alta redundancia). Si un enlace falla, los datos pueden tomar otra ruta.</li>
+                <li><span class="highlight">Desventajas:</span> Muy costosa de implementar (mucho cableado y puertos). Compleja de gestionar.</li>
+                <li><span class="highlight">Uso:</span> Redes de telecomunicaciones críticas, backbones de Internet, redes inalámbricas en entornos específicos.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://0901.static.prezi.com/preview/v2/fsiddnq3ltifyj6fcdrysfpolp6jc3sachvcdoaizecfr3dnitcq_1_0.png" alt="Diagrama Topología de Malla" style="max-width: 100%; height: auto; border-radius: 5px;">
+            </div>
+
+            <h3>3.5. Topología Híbrida</h3>
+            <div class="concept-box">
+                <p>Combina <span class="highlight">dos o más topologías básicas</span> para aprovechar las ventajas de cada una y adaptarse a necesidades específicas.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Flexibilidad, escalabilidad, optimización de costos y rendimiento.</li>
+                <li><span class="highlight">Ejemplo:</span> Una red que tiene varias topologías de estrella conectadas entre sí por una topología de bus o malla.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. Conmutación: Cómo los Datos Viajan por la Red</h2>
+            <p>La conmutación es el proceso mediante el cual los datos son dirigidos desde un punto de origen a un punto de destino a través de una red. Existen tres métodos principales:</p>
+
+            <h3>4.1. Conmutación de Circuitos (Circuit Switching)</h3>
+            <div class="concept-box">
+                <p>Se establece un <span class="highlight">camino dedicado y exclusivo</span> entre el emisor y el receptor antes de que comience la comunicación. Este camino permanece activo durante toda la duración de la comunicación.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Ancho de banda garantizado, baja latencia una vez establecida la conexión.</li>
+                <li><span class="highlight">Desventajas:</span> Ineficiente para tráfico a ráfagas (el circuito se reserva incluso si no hay datos). Si el circuito falla, la comunicación se interrumpe.</li>
+                <li><span class="highlight">Ejemplo:</span> La red telefónica tradicional (llamadas de voz). Cuando llamas a alguien, se establece un circuito físico entre tu teléfono y el suyo.</li>
+            </ul>
+
+            <h3>4.2. Conmutación de Mensajes (Message Switching)</h3>
+            <div class="concept-box">
+                <p>El mensaje completo se envía de un nodo a otro, <span class="highlight">almacenándose y reenviándose</span> en cada nodo intermedio hasta que llega a su destino. Cada nodo debe tener suficiente capacidad de almacenamiento para todo el mensaje.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Mayor eficiencia de ancho de banda que la conmutación de circuitos (no hay circuitos dedicados).</li>
+                <li><span class="highlight">Desventajas:</span> Latencia variable (depende del tamaño del mensaje y la disponibilidad de almacenamiento en los nodos). Si un nodo intermedio falla, el mensaje puede perderse.</li>
+                <li><span class="highlight">Uso:</span> Sistemas de telegrafía antiguos, algunos sistemas de correo electrónico (almacenar y reenviar).</li>
+            </ul>
+
+            <h3>4.3. Conmutación de Paquetes (Packet Switching)</h3>
+            <div class="concept-box">
+                <p>Los datos se dividen en <span class="highlight">pequeños bloques llamados paquetes</span>. Cada paquete contiene información de origen, destino y orden. Los paquetes viajan de forma independiente a través de la red, pudiendo tomar diferentes rutas y llegando en desorden al destino, donde son reensamblados.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventajas:</span> Muy eficiente para compartir el ancho de banda (múltiples comunicaciones pueden usar los mismos enlaces). Tolerante a fallos (los paquetes pueden evitar rutas congestionadas o fallidas). Flexible y escalable.</li>
+                <li><span class="highlight">Desventajas:</span> Mayor complejidad de los protocolos. Requiere reensamblado en el destino. Puede haber latencia variable y pérdida de paquetes.</li>
+                <li><span class="highlight">Uso:</span> <span class="highlight">¡Internet!</span> La mayoría de las redes de datos modernas (Ethernet, Wi-Fi, etc.).</li>
+            </ul>
+            <div class="table-container">
+                <h3>Comparación de Métodos de Conmutación:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Conmutación de Circuitos</th>
+                            <th>Conmutación de Mensajes</th>
+                            <th>Conmutación de Paquetes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Establecimiento Previo</td>
+                            <td>Sí (circuito dedicado)</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Unidad de Transmisión</td>
+                            <td>Flujo continuo de bits</td>
+                            <td>Mensaje completo</td>
+                            <td>Paquetes</td>
+                        </tr>
+                        <tr>
+                            <td>Almacenamiento en Nodos</td>
+                            <td>No</td>
+                            <td>Sí (Store-and-Forward)</td>
+                            <td>Sí (pequeños buffers)</td>
+                        </tr>
+                        <tr>
+                            <td>Uso de Ancho de Banda</td>
+                            <td>Ineficiente (reservado)</td>
+                            <td>Eficiente</td>
+                            <td>Muy eficiente (compartido)</td>
+                        </tr>
+                        <tr>
+                            <td>Latencia</td>
+                            <td>Baja y constante</td>
+                            <td>Variable y alta</td>
+                            <td>Variable</td>
+                        </tr>
+                        <tr>
+                            <td>Fiabilidad</td>
+                            <td>Alta (si el circuito se mantiene)</td>
+                            <td>Media</td>
+                            <td>Alta (con protocolos de capa superior)</td>
+                        </tr>
+                        <tr>
+                            <td>Ejemplo</td>
+                            <td>Telefonía tradicional</td>
+                            <td>Telegrafía, correo electrónico antiguo</td>
+                            <td>Internet, redes de datos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Construyendo y Analizando Redes!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: "Diseña tu Topología en Línea" con Excalidraw (30 minutos):</span>
+                    <p>En grupos, van a dibujar y explicar una topología de red utilizando una pizarra digital online colaborativa que no requiere registro.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para usar Excalidraw:</h4>
+                        <ol>
+                            <li>Formen grupos de 3-4 personas.</li>
+                            <li>Cada grupo abrirá una nueva pizarra en blanco en <a href="https://excalidraw.com/" target="_blank" style="color: #007bff; text-decoration: underline;">Excalidraw.com</a>.</li>
+                            <li>Una vez en la pizarra, hagan clic en el icono de <span class="highlight">"Colaborar"</span> (parece dos personas) en la parte superior derecha.</li>
+                            <li>Hagan clic en <span class="highlight">"Start collaboration"</span> y luego en <span class="highlight">"Copy link"</span>. Este enlace es el que el líder del grupo compartirá con el resto de su equipo (y con el docente si se pide).</li>
+                            <li>El docente asignará a cada grupo una de las siguientes topologías: <span class="highlight">Estrella, Bus, Anillo, Malla (parcial) o Híbrida</span>.</li>
+                            <li><strong>Tarea del Grupo:</strong>
+                                <ul>
+                                    <li>Utilicen las herramientas de Excalidraw (formas, texto, flechas, notas adhesivas) para dibujar la topología asignada.</li>
+                                    <li>Etiqueten claramente los <span class="highlight">nodos/dispositivos</span> y los <span class="highlight">enlaces/conexiones</span>.</li>
+                                    <li>Añadan <span class="highlight">notas adhesivas (Sticky notes)</span> junto a su diagrama para explicar:
+                                        <ul>
+                                            <li>¿Cómo funciona esta topología?</li>
+                                            <li>Una ventaja clave.</li>
+                                            <li>Una desventaja clave.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Al finalizar, cada grupo presentará su diagrama de Excalidraw a la clase, explicando su topología y las notas que añadieron.</li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Visualizar y comprender las características de las diferentes topologías de red de manera colaborativa y sin fricciones de registro.</p>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 2: "Mapa Conceptual de Conmutación" (35 minutos):</span>
+                    <p>En grupos, crearán un mapa conceptual o un diagrama comparativo sobre los tres métodos de conmutación (Circuitos, Mensajes, Paquetes) en un cuaderno o una hoja grande.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para la Actividad:</h4>
+                        <ol>
+                            <li>Formen grupos de 3-4 personas.</li>
+                            <li><strong>Materiales:</strong> Cuadernos, hojas grandes (A3 o rotafolio si disponible), bolígrafos de colores, marcadores.</li>
+                            <li><strong>Tarea del Grupo:</strong>
+                                <ul>
+                                    <li>Creen un mapa conceptual o un diagrama comparativo que muestre los tres tipos de conmutación: <span class="highlight">Conmutación de Circuitos, Conmutación de Mensajes y Conmutación de Paquetes</span>.</li>
+                                    <li>Para cada tipo de conmutación, deben incluir:
+                                        <ul>
+                                            <li>Una breve definición.</li>
+                                            <li>Sus principales características (ej. ¿requiere establecimiento previo?, ¿unidad de transmisión?).</li>
+                                            <li>Al menos una ventaja.</li>
+                                            <li>Al menos una desventaja.</li>
+                                            <li>Un ejemplo de aplicación real.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Utilicen flechas, conectores y diferentes colores para organizar la información de manera clara y visual.</li>
+                                </ul>
+                            </li>
+                            <li>Al finalizar, cada grupo presentará su mapa conceptual o diagrama a la clase, explicando las diferencias y similitudes entre los métodos de conmutación.</li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Consolidar la comprensión de los métodos de conmutación, sus características distintivas y su aplicabilidad en diferentes escenarios de red, a través de una representación visual.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>5. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos explorado la arquitectura y el flujo de datos en las redes desde una perspectiva más amplia. Hemos clasificado las redes por su alcance geográfico (PAN, LAN, MAN, WAN), comprendiendo que cada tipo tiene su propósito y tecnologías asociadas.</p>
+            <p>Además, hemos visualizado las diferentes topologías de red, desde la simplicidad del bus hasta la robustez de la malla, y hemos analizado los mecanismos de conmutación (circuitos, mensajes y paquetes), revelando por qué la conmutación de paquetes es la base de la Internet moderna.</p>
+            <p>Estos conceptos son cruciales para un analista de sistemas, ya que les permitirán diseñar, implementar y solucionar problemas en redes de cualquier escala, eligiendo las topologías y métodos de conmutación más adecuados para cada necesidad. ¡Prepárense para la próxima sesión donde nos adentraremos en el direccionamiento IP!</p>
+        </div>
+    </div>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
