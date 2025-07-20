@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medios de Transmisión y Cableado Estructurado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #0056b3;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 6: Medios de Transmisión y Cableado Estructurado</h1>
+        <p class="quote">"El medio es el mensaje, y en redes, es el camino por donde fluye la información."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: La Estructura de la Red</h2>
+            <p>En la sesión anterior, exploramos las redes geográficamente distribuidas, las topologías de red y los métodos de conmutación. Hoy, nos sumergiremos en el corazón físico de la red: los medios de transmisión y cómo se organizan a través del cableado estructurado.</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "Clasifica la Red" (5 minutos)</h3>
+                <p>El docente mencionará un escenario de red. Indiquen qué tipo de red (PAN, LAN, MAN, WAN) y qué topología principal (estrella, bus, anillo, malla) creen que se usaría.</p>
+                <ul>
+                    <li>"La red de un edificio de oficinas con 200 computadoras." (LAN, Estrella)</li>
+                    <li>"Conectar tu celular a tus auriculares Bluetooth." (PAN)</li>
+                    <li>"La red que une las sucursales de un banco en diferentes ciudades de Paraguay." (WAN)</li>
+                    <li>"La red interna de un campus universitario con varios edificios." (MAN, Híbrida/Estrella)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Medios de Transmisión: Los Caminos de la Información</h2>
+            <p>Los medios de transmisión son el canal físico o inalámbrico a través del cual los datos viajan de un dispositivo a otro en una red. La elección del medio es crucial, ya que afecta la velocidad, la distancia, la inmunidad al ruido y el costo.</p>
+            <div class="concept-box">
+                <h3>Término: Medio de Transmisión</h3>
+                <p>Es el <span class="highlight">camino físico o lógico</span> por el cual se mueven las señales de datos entre el emisor y el receptor en una red.</p>
+            </div>
+
+            <h3>2.1. Medios Guiados (Cableados)</h3>
+            <p>Son aquellos que confinan las señales a un camino físico específico, como un cable.</p>
+            <h4>a) Cables de Cobre</h4>
+            <p>Utilizan pulsos eléctricos para transmitir datos. Son económicos y fáciles de instalar, pero susceptibles a interferencias y atenuación a largas distancias.</p>
+            <ul>
+                <li><span class="highlight">Par Trenzado (Twisted Pair):</span>
+                    <ul>
+                        <li><span class="highlight">UTP (Unshielded Twisted Pair - Par Trenzado No Apantallado):</span> El más común en redes LAN (ej. cables Ethernet Cat5e, Cat6). Los pares de hilos están trenzados para reducir la interferencia electromagnética (EMI) entre ellos.</li>
+                        <li><span class="highlight">STP (Shielded Twisted Pair - Par Trenzado Apantallado):</span> Similar al UTP pero con un blindaje metálico adicional alrededor de los pares trenzados para una mayor protección contra EMI. Más costoso y menos flexible.</li>
+                    </ul>
+                    <div class="example-box">
+                        <p><strong>Uso:</strong> Conectar computadoras a switches, routers, puntos de acceso en redes de oficina y hogar. Velocidades comunes: 100 Mbps, 1 Gbps, 10 Gbps (con categorías superiores).</p>
+                    </div>
+                </li>
+                <li><span class="highlight">Cable Coaxial:</span>
+                    <ul>
+                        <li>Compuesto por un conductor central, un aislante, una malla conductora y una cubierta exterior.</li>
+                        <li><span class="highlight">Ventajas:</span> Mayor inmunidad al ruido que el par trenzado no apantallado en distancias cortas.</li>
+                        <li><span class="highlight">Desventajas:</span> Más rígido, más caro que UTP, menor capacidad que fibra.</li>
+                    </ul>
+                    <div class="example-box">
+                        <p><strong>Uso:</strong> Redes de televisión por cable (CATV), algunas redes LAN antiguas (Ethernet 10Base2, 10Base5), conexiones de antena.</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://contenidos.sucerman.com/nivel3/redes/unidad2/img/cobre-coaxial.png" alt="Cables de Cobre (UTP y Coaxial)" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Tipos de cables de cobre: Par Trenzado (UTP) y Coaxial.</p>
+            </div>
+
+            <h4>b) Fibra Óptica</h4>
+            <p>Transmite datos utilizando pulsos de luz a través de hilos de vidrio o plástico. Ofrece las mayores velocidades y distancias, y es inmune a las interferencias electromagnéticas.</p>
+            <ul>
+                <li><span class="highlight">Monomodo (Single-Mode Fiber - SMF):</span>
+                    <ul>
+                        <li>Núcleo muy pequeño, permite que la luz viaje por un solo camino.</li>
+                        <li><span class="highlight">Ventajas:</span> Mayor distancia de transmisión (hasta decenas o cientos de kilómetros), mayor ancho de banda.</li>
+                        <li><span class="highlight">Desventajas:</span> Más caro, requiere equipos de transmisión más precisos y costosos.</li>
+                    </ul>
+                    <div class="example-box">
+                        <p><strong>Uso:</strong> Redes de larga distancia (WAN), backbones de Internet, conexiones entre edificios o ciudades.</p>
+                    </div>
+                </li>
+                <li><span class="highlight">Multimodo (Multi-Mode Fiber - MMF):</span>
+                    <ul>
+                        <li>Núcleo más grande, permite que la luz viaje por múltiples caminos.</li>
+                        <li><span class="highlight">Ventajas:</span> Más económico que monomodo para distancias cortas, equipos más sencillos.</li>
+                        <li><span class="highlight">Desventajas:</span> Menor distancia de transmisión (hasta unos pocos kilómetros), menor ancho de banda que monomodo.</li>
+                    </ul>
+                    <div class="example-box">
+                        <p><strong>Uso:</strong> Redes LAN de alta velocidad, backbones de campus, conexiones dentro de un mismo edificio o entre edificios cercanos.</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://i0.wp.com/telpromadrid.eu/wp-content/uploads/2016/11/que-es-la-fibra-%C3%B3ptica-monomodo-y-multimodo.jpg" alt="Fibra Óptica (Monomodo y Multimodo)" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Tipos de Fibra Óptica: Monomodo y Multimodo.</p>
+            </div>
+
+            <h3>2.2. Medios No Guiados (Inalámbricos)</h3>
+            <p>Transmiten datos a través del aire utilizando ondas electromagnéticas, sin necesidad de un camino físico.</p>
+            <ul>
+                <li><span class="highlight">Radiofrecuencia (RF):</span>
+                    <ul>
+                        <li><span class="highlight">Uso:</span> Wi-Fi (redes locales inalámbricas), Bluetooth (redes personales), radios bidireccionales.</li>
+                        <li><span class="highlight">Ventajas:</span> Movilidad, flexibilidad, fácil implementación en ciertos escenarios.</li>
+                        <li><span class="highlight">Desventajas:</span> Susceptible a interferencias, seguridad (fácil de interceptar si no se cifra), alcance limitado, menor velocidad que cable.</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Microondas:</span>
+                    <ul>
+                        <li><span class="highlight">Uso:</span> Enlaces punto a punto (entre edificios), comunicaciones satelitales.</li>
+                        <li><span class="highlight">Ventajas:</span> Grandes distancias (enlaces satelitales), altas velocidades.</li>
+                        <li><span class="highlight">Desventajas:</span> Requiere línea de vista, susceptible a condiciones climáticas (lluvia).</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Satélite:</span>
+                    <ul>
+                        <li><span class="highlight">Uso:</span> Conexiones a Internet en áreas remotas, comunicaciones globales.</li>
+                        <li><span class="highlight">Ventajas:</span> Cobertura global.</li>
+                        <li><span class="highlight">Desventajas:</span> Alta latencia (retraso de la señal), costoso.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://contenidos.sucerman.com/nivel3/redes/unidad2/img/tipos-medios-inalambricos.jpg" alt="Medios Inalámbricos (Wi-Fi, Satélite)" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Ejemplos de medios inalámbricos: Antena Wi-Fi y Satélite.</p>
+            </div>
+
+            <div class="table-container">
+                <h3>Tabla Comparativa de Medios de Transmisión:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Par Trenzado (Cobre)</th>
+                            <th>Fibra Óptica</th>
+                            <th>Inalámbrico (Wi-Fi/RF)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Velocidad</td>
+                            <td>Hasta 10 Gbps (Cat6a/7)</td>
+                            <td>Hasta 100 Gbps o más</td>
+                            <td>Hasta varios Gbps (Wi-Fi 6/7)</td>
+                        </tr>
+                        <tr>
+                            <td>Distancia</td>
+                            <td>Hasta 100 metros</td>
+                            <td>Hasta km (MMF) o 100s de km (SMF)</td>
+                            <td>Decenas a cientos de metros (AP)</td>
+                        </tr>
+                        <tr>
+                            <td>Inmunidad a EMI</td>
+                            <td>Baja (UTP), Media (STP)</td>
+                            <td>Alta (inmune)</td>
+                            <td>Baja (susceptible)</td>
+                        </tr>
+                        <tr>
+                            <td>Costo</td>
+                            <td>Bajo</td>
+                            <td>Alto</td>
+                            <td>Medio (AP + dispositivos)</td>
+                        </tr>
+                        <tr>
+                            <td>Instalación</td>
+                            <td>Fácil</td>
+                            <td>Compleja, requiere herramientas especiales</td>
+                            <td>Relativamente fácil</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Cableado Estructurado: La Columna Vertebral de la Red</h2>
+            <p>En entornos empresariales o institucionales, la simple conexión de cables no es suficiente. Necesitamos un sistema organizado y estandarizado para la infraestructura de cableado.</p>
+            <div class="concept-box">
+                <h3>Término: Cableado Estructurado</h3>
+                <p>Es un sistema de cableado de telecomunicaciones que consiste en un conjunto de cables, conectores, canalizaciones y dispositivos que permiten la interconexión de equipos informáticos, de telefonía y de seguridad de forma <span class="highlight">organizada, estandarizada y flexible</span>.</p>
+            </div>
+            <h3>Importancia del Cableado Estructurado:</h3>
+            <ul>
+                <li><span class="highlight">Estandarización:</span> Sigue normas internacionales (ej. TIA/EIA-568) para garantizar la compatibilidad.</li>
+                <li><span class="highlight">Flexibilidad:</span> Permite añadir, mover o cambiar dispositivos fácilmente sin reestructurar todo el cableado.</li>
+                <li><span class="highlight">Escalabilidad:</span> Facilita el crecimiento futuro de la red.</li>
+                <li><span class="highlight">Facilidad de Gestión y Mantenimiento:</span> Simplifica la identificación de problemas y las reparaciones.</li>
+                <li><span class="highlight">Mayor Fiabilidad:</span> Reduce errores y fallos de conexión.</li>
+            </ul>
+
+            <h3>Componentes Clave del Cableado Estructurado:</h3>
+            <ul>
+                <li><span class="highlight">Cableado Horizontal:</span> Conecta el área de trabajo con el cuarto de telecomunicaciones. Generalmente UTP.</li>
+                <li><span class="highlight">Cableado Vertical (Backbone):</span> Conecta los cuartos de telecomunicaciones entre sí, y estos con la sala de equipos o entrada de servicios. Generalmente fibra óptica o cobre de alta capacidad.</li>
+                <li><span class="highlight">Área de Trabajo:</span> Donde se encuentran los usuarios y sus dispositivos (computadoras, teléfonos). Incluye tomas de red (jack RJ45).</li>
+                <li><span class="highlight">Cuarto de Telecomunicaciones (TR - Telecommunications Room):</span> Espacio centralizado donde se terminan los cables horizontales y se alojan los equipos de red (switches, patch panels).</li>
+                <li><span class="highlight">Sala de Equipos (ER - Equipment Room):</span> Área central que alberga los equipos de telecomunicaciones más complejos, como servidores, routers principales y equipos de interconexión.</li>
+                <li><span class="highlight">Entrada de Servicios (EF - Entrance Facility):</span> Punto donde los servicios de telecomunicaciones externos (ISP, telefonía) ingresan al edificio.</li>
+                <li><span class="highlight">Patch Panels:</span> Paneles con puertos donde se terminan los cables permanentes y se conectan con cables de parcheo a los equipos activos (switches).</li>
+                <li><span class="highlight">Racks y Gabinetes:</span> Estructuras para organizar y proteger los equipos de red y el cableado.</li>
+            </ul>
+            <div class="image-placeholder">
+                <img src="https://www.tipengineer.com/wp-content/uploads/2020/05/subsistemas-basicos-nuevo.png" alt="Diagrama de Cableado Estructurado" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Representación de los subsistemas de un cableado estructurado.</p>
+            </div>
+            <div class="example-box">
+                <h3>Normas Importantes (Mención):</h3>
+                <p>Las normas TIA/EIA son fundamentales en el cableado estructurado:</p>
+                <ul>
+                    <li><span class="highlight">TIA/EIA-568:</span> Estándar para el cableado de telecomunicaciones en edificios comerciales (define categorías de cable, conectores, distancias, etc.).</li>
+                    <li><span class="highlight">TIA/EIA-569:</span> Estándar para los recorridos y espacios de telecomunicaciones (canalizaciones, cuartos de telecomunicaciones).</li>
+                    <li><span class="highlight">TIA/EIA-606:</span> Estándar para la administración de la infraestructura de telecomunicaciones (etiquetado, documentación).</li>
+                    <li><span class="highlight">TIA/EIA-607:</span> Estándar para los requisitos de puesta a tierra y unión para edificios de telecomunicaciones.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Conectando el Mundo Real!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: Video Demostrativo: "Cómo Crimpar un Cable de Red" (15 minutos):</span>
+                    <p>Veremos un video que muestra el proceso práctico de crimpar un cable de red UTP con conectores RJ45. Presten atención a los pasos y la importancia de seguir el estándar de colores (T568A o T568B).</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/XpeKWEXw7HE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p><strong>Discusión (Opcional):</strong> Si hay herramientas y cables disponibles, el docente podría realizar una demostración en vivo o permitir a los alumnos practicar (bajo supervisión).</p>
+                    <p><strong>Objetivo:</strong> Visualizar un proceso fundamental en el cableado de redes y entender la importancia de la precisión.</p>
+                </li>
+                <li><span class="highlight">Actividad 2: "Identifica el Medio y el Componente" (15 minutos):</span>
+                    <p>El docente mostrará imágenes de diferentes cables, conectores o componentes de cableado estructurado. Los alumnos, en grupos, deberán identificar el tipo y su función, y a qué subsistema del cableado estructurado podría pertenecer.</p>
+                    <p><strong>Recurso:</strong> Presentación con imágenes de:</p>
+                    <ul>
+                        <li>Cable UTP (Cat5e, Cat6)</li>
+                        <li>Cable de Fibra Óptica (conector LC/SC)</li>
+                        <li>Conector RJ45</li>
+                        <li>Patch Panel</li>
+                        <li>Rack de comunicaciones</li>
+                        <li>Toma de pared (Jack RJ45)</li>
+                        <li>Un Access Point inalámbrico</li>
+                    </ul>
+                    <p><strong>Objetivo:</strong> Reforzar la identificación visual de los medios y componentes clave de la infraestructura de red.</p>
+                </li>
+                <li><span class="highlight">Actividad 3: "Diseño Conceptual de Cableado Estructurado" (30 minutos):</span>
+                    <p>En grupos, diseñarán un esquema de cableado estructurado básico para un escenario real, utilizando una hoja de papel o una herramienta de dibujo simple.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para la Actividad:</h4>
+                        <ol>
+                            <li>Formen grupos de 3-4 personas.</li>
+                            <li><strong>Escenario:</strong> "Una pequeña oficina con 15 puestos de trabajo, 2 impresoras en red, una sala de reuniones con proyector y conexión de red, y un servidor pequeño. La oficina está en un solo piso de un edificio."</li>
+                            <li><strong>Tarea del Grupo:</strong> En una hoja grande de papel (o cuaderno), dibujen un diagrama conceptual del cableado estructurado para esta oficina. Deben incluir y etiquetar:
+                                <ul>
+                                    <li>El <span class="highlight">Área de Trabajo</span> (con las tomas de red para los puestos, impresoras, sala de reuniones).</li>
+                                    <li>El <span class="highlight">Cuarto de Telecomunicaciones (TR)</span>, mostrando dónde irían los patch panels y switches.</li>
+                                    <li>El <span class="highlight">Cableado Horizontal</span> (líneas desde las tomas hasta el TR).</li>
+                                    <li>Una posible ubicación para el <span class="highlight">Servidor</span> (puede estar en el TR o en una Sala de Equipos pequeña).</li>
+                                    <li>El tipo de <span class="highlight">medio de transmisión</span> principal que usarían para el cableado horizontal (ej. UTP Cat6).</li>
+                                    <li>Consideren dónde podría estar la <span class="highlight">Entrada de Servicios</span> (conexión a internet).</li>
+                                </ul>
+                            </li>
+                            <li>No se preocupen por la escala perfecta, sino por la lógica de la conectividad y la organización.</li>
+                            <li>Al finalizar, cada grupo presentará su diseño a la clase, explicando sus decisiones y por qué eligieron ciertos componentes o ubicaciones.</li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Aplicar los conocimientos sobre cableado estructurado para diseñar una solución práctica y comprender la interconexión de sus componentes.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>4. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos desglosado la infraestructura física de las redes, desde los diferentes tipos de medios de transmisión que transportan nuestros datos (cobre, fibra, inalámbrico) hasta el sistema organizado del cableado estructurado.</p>
+            <p>Comprender la importancia de elegir el medio adecuado y de implementar un cableado estructurado siguiendo estándares es fundamental para garantizar una red fiable, escalable y fácil de mantener. Como analistas de sistemas, esta base les permitirá tomar decisiones informadas sobre la infraestructura física que soporta todas las aplicaciones y servicios.</p>
+            <p>Hemos completado el Bloque 2. ¡Felicidades! En la próxima sesión, nos adentraremos en el apasionante mundo del direccionamiento IP, comenzando con las bases de IPv4.</p>
+        </div>
+    </div>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
