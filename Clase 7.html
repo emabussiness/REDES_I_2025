@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7: Direcciones IP (IPv4): Bases y Estructura</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 7: Direcciones IP (IPv4): Bases y Estructura</h1>
+        <p class="quote">"Si la red es una ciudad, la dirección IP es la dirección exacta de cada casa, permitiendo que el correo llegue a su destino."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: Los Caminos y las Formas de la Red</h2>
+            <p>En la sesión anterior, exploramos los medios de transmisión (cables de cobre, fibra óptica, inalámbricos) y la importancia del cableado estructurado. Hoy, pasaremos del "camino" al "destino": cómo los dispositivos se identifican y localizan en la red a través de las direcciones IP.</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "¿Qué Medio Usarías?" (5 minutos)</h3>
+                <p>El docente presentará un escenario. Indiquen qué medio de transmisión sería el más adecuado y por qué.</p>
+                <ul>
+                    <li>"Conectar dos edificios universitarios a 5 km de distancia con alta velocidad." (Fibra Óptica Monomodo, por distancia y velocidad)</li>
+                    <li>"Conectar una computadora a un switch en una oficina." (Cable UTP, por costo y facilidad de instalación en LAN)</li>
+                    <li>"Proveer internet a una zona rural sin infraestructura de cable." (Inalámbrico/Satélite, por cobertura)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Introducción al Protocolo IP: El Servicio Postal de Internet</h2>
+            <p>Hemos hablado de las capas del modelo OSI y TCP/IP. El Protocolo IP reside en la <span class="highlight">Capa de Red (OSI)</span> o <span class="highlight">Capa de Internet (TCP/IP)</span>, y es fundamental para que los datos viajen de una red a otra.</p>
+            <div class="concept-box">
+                <h3>Término: Protocolo IP (Internet Protocol)</h3>
+                <p>Es el protocolo principal de la capa de Internet del conjunto TCP/IP. Su función primordial es el <span class="highlight">direccionamiento lógico</span> y el <span class="highlight">enrutamiento (routing)</span> de paquetes de datos a través de una red interconectada (como Internet).</p>
+            </div>
+            <h3>Funciones Clave del Protocolo IP:</h3>
+            <ul>
+                <li><span class="highlight">Direccionamiento:</span> Asigna una dirección única a cada dispositivo en la red (la dirección IP).</li>
+                <li><span class="highlight">Enrutamiento:</span> Determina la mejor ruta para que los paquetes de datos viajen desde el origen hasta el destino, a través de múltiples redes.</li>
+                <li><span class="highlight">Fragmentación:</span> Si un paquete es demasiado grande para un medio de transmisión, IP puede dividirlo en fragmentos más pequeños para que puedan viajar.</li>
+                <li><span class="highlight">No Orientado a Conexión:</span> IP es un protocolo "sin conexión". Esto significa que no establece una conexión dedicada antes de enviar los paquetes y no garantiza su entrega o el orden de llegada. La fiabilidad se maneja en capas superiores (ej. TCP).</li>
+            </ul>
+            <div class="example-box">
+                <h3>Analogía: El Servicio Postal</h3>
+                <p>Imagina que el Protocolo IP es como el servicio postal. Cuando envías una carta (un paquete de datos), IP se encarga de:</p>
+                <ul>
+                    <li><span class="highlight">Asignar una dirección:</span> Cada casa (dispositivo) tiene una dirección única (IP).</li>
+                    <li><span class="highlight">Enrutar:</span> El cartero (router) sabe por qué calles (rutas) enviar la carta para que llegue a su destino, incluso si tiene que pasar por varias ciudades (redes).</li>
+                    <li><span class="highlight">No hay confirmación directa:</span> Cuando pones una carta en el buzón, no sabes inmediatamente si llegó o en qué orden. Confías en el sistema.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Direcciones IP (IPv4): Bases y Estructura</h2>
+            <p>La versión más utilizada del Protocolo IP es IPv4 (Internet Protocol version 4). Aunque está siendo reemplazada gradualmente por IPv6, IPv4 sigue siendo predominante y es fundamental entenderlo.</p>
+            <div class="concept-box">
+                <h3>Término: Dirección IP (IPv4)</h3>
+                <p>Una <span class="highlight">dirección IP (IPv4)</span> es un identificador numérico único y lógico asignado a cada dispositivo conectado a una red que utiliza el Protocolo de Internet. Permite que los dispositivos se localicen y se comuniquen entre sí.</p>
+            </div>
+            <h3>Estructura de una Dirección IPv4:</h3>
+            <ul>
+                <li><span class="highlight">Tamaño:</span> Una dirección IPv4 tiene <span class="highlight">32 bits</span> de longitud.</li>
+                <li><span class="highlight">Formato:</span> Se representa comúnmente en <span class="highlight">notación decimal punteada (dotted decimal notation)</span>. Se divide en cuatro secciones de 8 bits cada una, llamadas <span class="highlight">octetos</span>. Cada octeto se convierte a su valor decimal y se separa por puntos.</li>
+                <li><span class="highlight">Rango de Octeto:</span> Cada octeto puede tener un valor decimal entre 0 y 255 (ya que 8 bits pueden representar $2^8 = 256$ valores, de 0 a 255).</li>
+            </ul>
+            <div class="example-box">
+                <h3>Ejemplo de Dirección IPv4: <code>192.168.1.10</code></h3>
+                <p>Desglose en octetos y bits:</p>
+                <ul>
+                    <li>Primer Octeto: <code>192</code> (11000000 en binario)</li>
+                    <li>Segundo Octeto: <code>168</code> (10101000 en binario)</li>
+                    <li>Tercer Octeto: <code>1</code> (00000001 en binario)</li>
+                    <li>Cuarto Octeto: <code>10</code> (00001010 en binario)</li>
+                </ul>
+                <p>En total, son 32 bits: <code>11000000.10101000.00000001.00001010</code></p>
+            </div>
+<div class="image-placeholder">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQliXKDXouaFQOQ_2CKcJXN050Dv48sQ5WQiw&s" alt="Dirección IP: Porción de Red y Host" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>División de una IP en bits.</p>
+            </div>
+
+            <h3>Porción de Red y Porción de Host:</h3>
+            <p>Cada dirección IP se compone de dos partes fundamentales:</p>
+            <ul>
+                <li><span class="highlight">Porción de Red (Network Portion):</span> Identifica la red a la que pertenece el dispositivo. Todos los dispositivos en la misma red comparten la misma porción de red. Es como el "nombre de la calle" o "código postal" de tu dirección.</li>
+                <li><span class="highlight">Porción de Host (Host Portion):</span> Identifica el dispositivo específico dentro de esa red. Cada dispositivo en la misma red debe tener una porción de host única. Es como el "número de casa" en tu dirección.</li>
+            </ul>
+            <p>La forma en que se divide una dirección IP en estas dos porciones se determina mediante la <span class="highlight">Máscara de Subred</span>, un concepto que exploraremos a fondo en la próxima sesión.</p>
+            <div class="image-placeholder">
+                <img src="https://interpolados.wordpress.com/wp-content/uploads/2017/03/122.png" alt="Dirección IP: Porción de Red y Host" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Diagrama mostrando la división de una IP en porción de red y porción de host.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Clases de Direcciones IP (IPv4): Un Legado Histórico</h2>
+            <p>Históricamente, las direcciones IPv4 se dividían en clases (A, B, C, D, E) basadas en el valor del primer octeto. Aunque este sistema de "clases" ha sido reemplazado en la práctica por el enrutamiento sin clases (CIDR), es fundamental entenderlo para comprender la evolución de las redes y por qué ciertas direcciones se comportan de cierta manera.</p>
+
+            <h3>4.1. Clase A</h3>
+            <ul>
+                <li><span class="highlight">Primer bit:</span> Siempre es `0`.</li>
+                <li><span class="highlight">Rango del primer octeto:</span> 1 a 126.</li>
+                <li><span class="highlight">Estructura:</span> `Red.Host.Host.Host` (8 bits para red, 24 bits para host).</li>
+                <li><span class="highlight">Número de redes:</span> $2^7 = 128$ (pero 0.0.0.0/8 y 127.0.0.0/8 son reservados).</li>
+                <li><span class="highlight">Hosts por red:</span> $2^{24} - 2 = 16,777,214$ hosts.</li>
+                <li><span class="highlight">Uso Típico:</span> Diseñada para redes muy grandes, con un enorme número de hosts (ej. grandes corporaciones o instituciones gubernamentales).</li>
+                <li><span class="highlight">Dirección de Loopback:</span> La red 127.0.0.0/8 está reservada para loopback (ej. 127.0.0.1 para "localhost").</li>
+            </ul>
+            <div class="example-box">
+                <p><strong>Ejemplo:</strong> <code>10.0.0.0</code> a <code>10.255.255.255</code> (una red de Clase A)</p>
+            </div>
+
+            <h3>4.2. Clase B</h3>
+            <ul>
+                <li><span class="highlight">Primeros dos bits:</span> Siempre `10`.</li>
+                <li><span class="highlight">Rango del primer octeto:</span> 128 a 191.</li>
+                <li><span class="highlight">Estructura:</span> `Red.Red.Host.Host` (16 bits para red, 16 bits para host).</li>
+                <li><span class="highlight">Número de redes:</span> $2^{14} = 16,384$ redes.</li>
+                <li><span class="highlight">Hosts por red:</span> $2^{16} - 2 = 65,534$ hosts.</li>
+                <li><span class="highlight">Uso Típico:</span> Diseñada para redes de tamaño mediano a grande (ej. universidades, empresas medianas).</li>
+            </ul>
+            <div class="example-box">
+                <p><strong>Ejemplo:</strong> <code>172.16.0.0</code> a <code>172.31.255.255</code> (un rango de redes de Clase B)</p>
+            </div>
+
+            <h3>4.3. Clase C</h3>
+            <ul>
+                <li><span class="highlight">Primeros tres bits:</span> Siempre `110`.</li>
+                <li><span class="highlight">Rango del primer octeto:</span> 192 a 223.</li>
+                <li><span class="highlight">Estructura:</span> `Red.Red.Red.Host` (24 bits para red, 8 bits para host).</li>
+                <li><span class="highlight">Número de redes:</span> $2^{21} = 2,097,152$ redes.</li>
+                <li><span class="highlight">Hosts por red:</span> $2^8 - 2 = 254$ hosts.</li>
+                <li><span class="highlight">Uso Típico:</span> Diseñada para redes pequeñas (ej. pequeñas empresas, redes domésticas). Es la clase más común para redes locales.</li>
+            </ul>
+            <div class="example-box">
+                <p><strong>Ejemplo:</strong> <code>192.168.1.0</code> a <code>192.168.1.255</code> (una red de Clase C)</p>
+            </div>
+
+            <h3>4.4. Clases Especiales: D y E</h3>
+            <ul>
+                <li><span class="highlight">Clase D (Multicast):</span>
+                    <ul>
+                        <li><span class="highlight">Rango del primer octeto:</span> 224 a 239.</li>
+                        <li><span class="highlight">Uso:</span> Para direcciones de grupo de multidifusión (multicast), donde un paquete se envía a un grupo de destinos simultáneamente (ej. streaming de video a múltiples receptores).</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Clase E (Experimental):</span>
+                    <ul>
+                        <li><span class="highlight">Rango del primer octeto:</span> 240 a 255.</li>
+                        <li><span class="highlight">Uso:</span> Reservada para fines de investigación y desarrollo. No se utiliza en Internet público.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="table-container">
+                <h3>Resumen de Clases de IPv4:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Clase</th>
+                            <th>Rango Primer Octeto</th>
+                            <th>Bits de Red</th>
+                            <th>Bits de Host</th>
+                            <th>N° Redes (aprox.)</th>
+                            <th>N° Hosts/Red (aprox.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A</td>
+                            <td>1 - 126</td>
+                            <td>8</td>
+                            <td>24</td>
+                            <td>126</td>
+                            <td>16.7 millones</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>128 - 191</td>
+                            <td>16</td>
+                            <td>16</td>
+                            <td>16 mil</td>
+                            <td>65 mil</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>192 - 223</td>
+                            <td>24</td>
+                            <td>8</td>
+                            <td>2 millones</td>
+                            <td>254</td>
+                        </tr>
+                        <tr>
+                            <td>D (Multicast)</td>
+                            <td>224 - 239</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>E (Experimental)</td>
+                            <td>240 - 255</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+	<div class="image-placeholder">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbou7Nm4Ru0ozHrgpdHjyx_-xrJXHL-Ga8DlnbIPH48l3RzTAtHb_SdrYMLtGVbRbtFxaD6o8WbX9tHqsPAuTdiwlquIjBpn-tTWuL94DvNGkUNuIZnH8JSzwKzyFa78lrElb_vePGomw/?imgmax=800" alt="Dirección IP: Porción de Red y Host" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Diagrama mostrando la división de una IP en porción de red y porción de host.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Direcciones IP Públicas y Privadas: El Mundo Exterior vs. Tu Red Interna</h2>
+            <p>No todas las direcciones IP son iguales. Algunas son visibles en Internet, mientras que otras están reservadas para uso interno en redes locales.</p>
+
+            <h3>5.1. Direcciones IP Públicas</h3>
+            <div class="concept-box">
+                <p>Son direcciones IP <span class="highlight">únicas a nivel mundial</span> y son asignadas a dispositivos que necesitan ser accesibles directamente desde Internet. Son gestionadas por organizaciones como IANA y RIRs (Regional Internet Registries).</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Uso:</span> Servidores web, routers de borde de una empresa, cualquier dispositivo que necesite comunicarse directamente con Internet.</li>
+                <li><span class="highlight">Costo:</span> Generalmente se obtienen a través de tu Proveedor de Servicios de Internet (ISP) y pueden tener un costo asociado.</li>
+            </ul>
+            <div class="example-box">
+                <p><strong>Ejemplo:</strong> La dirección IP que te asigna tu ISP para tu router de casa (ej. <code>203.0.113.45</code>) es una IP pública.</p>
+            </div>
+
+            <h3>5.2. Direcciones IP Privadas</h3>
+            <div class="concept-box">
+                <p>Son rangos de direcciones IP <span class="highlight">reservadas para uso exclusivo dentro de redes privadas</span> (LANs). No son enrutables en Internet, lo que significa que los paquetes con estas direcciones no pueden viajar directamente por la red pública.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Ventaja Principal:</span> Permiten que muchas redes utilicen los mismos rangos de direcciones internamente sin conflictos globales, ayudando a conservar el limitado espacio de direcciones IPv4 públicas.</li>
+                <li><span class="highlight">Seguridad:</span> Al no ser enrutables en Internet, ofrecen una capa básica de seguridad, ya que los dispositivos con IPs privadas no son directamente accesibles desde el exterior.</li>
+                <li><span class="highlight">Uso:</span> Computadoras de hogar, oficinas, servidores internos, dispositivos IoT dentro de una red local.</li>
+            </ul>
+            <h3>Rangos de Direcciones IP Privadas (RFC 1918):</h3>
+            <p>Estos son los rangos específicos reservados para uso privado:</p>
+            <ul>
+                <li><span class="highlight">Clase A:</span> <code>10.0.0.0</code> a <code>10.255.255.255</code> (un solo bloque de Clase A)</li>
+                <li><span class="highlight">Clase B:</span> <code>172.16.0.0</code> a <code>172.31.255.255</code> (16 bloques de Clase B consecutivos)</li>
+                <li><span class="highlight">Clase C:</span> <code>192.168.0.0</code> a <code>192.168.255.255</code> (256 bloques de Clase C consecutivos)</li>
+            </ul>
+            <div class="example-box">
+                <p><strong>Ejemplo:</strong> La mayoría de las redes domésticas usan direcciones como <code>192.168.1.x</code> o <code>10.0.0.x</code>.</p>
+            </div>
+
+            <h3>El Rol de NAT (Network Address Translation):</h3>
+            <p>Si los dispositivos en una red privada (con IPs privadas) necesitan acceder a Internet, ¿cómo lo hacen si sus IPs no son enrutables públicamente?</p>
+            <div class="concept-box">
+                <h3>Término: NAT (Network Address Translation - Traducción de Direcciones de Red)</h3>
+                <p>Es un mecanismo que permite a múltiples dispositivos en una red privada <span class="highlight">compartir una única dirección IP pública</span> al comunicarse con Internet. El router de la red privada (que tiene una IP pública) traduce las IPs privadas de los dispositivos internos a su propia IP pública al enviar tráfico a Internet, y viceversa.</p>
+            </div>
+            <div class="image-placeholder">
+                <img src="https://pandorafms.com/wp-content/uploads/2024/04/NAT-blog-1.png" alt="Diagrama de NAT con IP Pública y Privada" style="max-width: 100%; height: auto; border-radius: 5px;">
+                <p>Cómo NAT permite que dispositivos con IPs privadas accedan a Internet a través de una IP pública.</p>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Manos a la Obra con las IPs!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: "Identifica la Clase y Tipo de IP" (20 minutos):</span>
+                    <p>En grupos, se les dará una lista de direcciones IP. Deberán identificar a qué clase (A, B, C, D, E) pertenece cada una y si es una dirección pública o privada.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para la Actividad:</h4>
+                        <ol>
+                            <li>Formen grupos de 3-4 personas.</li>
+                            <li>El docente proporcionará una hoja de trabajo con la siguiente lista de direcciones IP:
+                                <ul>
+                                    <li><code>192.168.0.1</code></li>
+                                    <li><code>10.5.10.100</code></li>
+                                    <li><code>172.20.0.50</code></li>
+                                    <li><code>130.1.2.3</code></li>
+                                    <li><code>200.200.200.200</code></li>
+                                    <li><code>172.32.1.1</code></li>
+                                    <li><code>127.0.0.1</code></li>
+                                    <li><code>224.0.0.1</code></li>
+                                    <li><code>1.1.1.1</code></li>
+                                    <li><code>192.167.255.255</code></li>
+                                </ul>
+                            </li>
+                            <li>Para cada IP, escriban en su hoja:
+                                <ul>
+                                    <li>Su <span class="highlight">Clase</span> (A, B, C, D, E).</li>
+                                    <li>Si es <span class="highlight">Pública o Privada</span> (o Reservada, en el caso de 127.0.0.1 y 224.0.0.1).</li>
+                                </ul>
+                            </li>
+                            <li>Al finalizar, el docente revisará las respuestas en conjunto con la clase, explicando cada caso.</li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Practicar la identificación de clases de IP y diferenciar entre direcciones públicas y privadas.</p>
+			<h3><a href="Ejercicio Clase 7.html" id="menu">Ir al ejercicio</a></h3>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 2: "Diseña tu Red Doméstica/Pequeña Oficina con IPs" (30 minutos):</span>
+                    <p>En grupos, van a dibujar un esquema básico de una red y asignarle direcciones IP, decidiendo qué IPs serían públicas y cuáles privadas.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para la Actividad:</h4>
+                        <ol>
+                            <li>Formen grupos de 3-4 personas.</li>
+                            <li><strong>Escenario:</strong> "Una pequeña oficina con 10 computadoras, 2 impresoras de red, un servidor de archivos local y un router que conecta a Internet."</li>
+                            <li><strong>Tarea del Grupo:</strong> En una hoja de papel o en un cuaderno:
+                                <ul>
+                                    <li>Dibujen un diagrama sencillo de esta red, incluyendo los dispositivos mencionados (computadoras, impresoras, servidor, router, "Internet").</li>
+                                    <li>Asignen una <span class="highlight">dirección IP privada</span> a cada dispositivo dentro de la oficina (computadoras, impresoras, servidor). Elijan un rango de clase C privada (ej. 192.168.1.x) o clase A privada (10.0.0.x).</li>
+                                    <li>Asignen una <span class="highlight">dirección IP pública</span> al router (la interfaz que mira hacia Internet). Pueden usar un ejemplo como `203.0.113.1`.</li>
+                                    <li>Expliquen brevemente cómo los dispositivos internos (con IPs privadas) se comunicarían con Internet a través de la IP pública del router (mencionando NAT).</li>
+                                </ul>
+                            </li>
+                            <li>Al finalizar, cada grupo presentará su diagrama y explicará su esquema de direccionamiento.</li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Aplicar los conceptos de direcciones IP públicas y privadas en un escenario práctico y comprender el rol de NAT.</p>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 3: Debate Corto: "¿Se acaban las IPs?" (10 minutos):</span>
+                    <p>Para cerrar la sesión, abramos una discusión sobre el futuro de las direcciones IP.</p>
+                    <p class="quote">"Si IPv4 tiene un número limitado de direcciones, y cada vez hay más dispositivos conectados (celulares, IoT, etc.), ¿qué creen que está pasando con las direcciones IP públicas? ¿Hay una solución a esto?"</p>
+                    <p><strong>Objetivo:</strong> Introducir el concepto de agotamiento de IPv4 y la necesidad de IPv6, preparando el terreno para futuras sesiones.</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>6. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos sentado las bases del direccionamiento IP, el sistema que permite que cada dispositivo en una red tenga una "dirección" única. Hemos explorado la estructura de las direcciones IPv4, sus clases históricas y la crucial distinción entre direcciones IP públicas y privadas, entendiendo cómo NAT permite que nuestras redes locales se conecten al vasto mundo de Internet.</p>
+            <p>Comprender estos fundamentos es el primer paso para dominar el diseño y la gestión de redes. En la próxima sesión, profundizaremos en cómo las direcciones IP se dividen en porciones de red y host, y cómo se utilizan las máscaras de subred para crear redes más eficientes y organizadas.</p>
+        </div>
+    </div>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
