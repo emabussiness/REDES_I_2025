@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8: Conversiones IP: Binario a Decimal y Decimal a Binario</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #0056b3;
+        }
+        .conversion-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        .conversion-table th, .conversion-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .conversion-table th {
+            background-color: #f2f2f2;
+        }
+        .solution-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+        }
+        .toggle-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .toggle-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 8: Conversiones IP: Binario a Decimal y Decimal a Binario</h1>
+        <p class="quote">"Las computadoras hablan en binario, pero nosotros pensamos en decimal. Aprender a traducir es la clave para entender su lenguaje."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: Las Direcciones de la Red</h2>
+            <p>En la sesión anterior, introdujimos las direcciones IP (IPv4), sus clases (A, B, C, D, E) y la vital distinción entre direcciones públicas y privadas. Hoy, nos adentraremos en el "idioma" fundamental de las computadoras para entender cómo se representan y se manipulan estas direcciones: los sistemas numéricos binario y decimal.</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "¿Pública o Privada?" (5 minutos)</h3>
+                <p>El docente mencionará una dirección IP. En voz alta, digan si creen que es una dirección IP pública, privada o reservada.</p>
+                <ul>
+                    <li><code>192.168.1.10</code> (Privada)</li>
+                    <li><code>8.8.8.8</code> (Pública)</li>
+                    <li><code>172.17.5.200</code> (Privada)</li>
+                    <li><code>203.0.113.1</code> (Pública)</li>
+                    <li><code>127.0.0.1</code> (Reservada - Loopback)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Sistemas Numéricos: Binario y Decimal</h2>
+            <p>Los sistemas numéricos son conjuntos de símbolos y reglas que se utilizan para representar cantidades. En el mundo de las redes y la computación, dos sistemas son de vital importancia:</p>
+
+            <h3>2.1. Sistema Decimal (Base 10)</h3>
+            <div class="concept-box">
+                <p>Es el sistema numérico que utilizamos en nuestro día a día. Se basa en 10 dígitos (0, 1, 2, 3, 4, 5, 6, 7, 8, 9). Cada posición de un dígito tiene un <span class="highlight">valor posicional</span> que es una potencia de 10.</p>
+            </div>
+            <div class="example-box">
+                <h3>Ejemplo: Número Decimal <code>453</code></h3>
+                <ul>
+                    <li><code>4</code> está en la posición de las centenas ($10^2$)</li>
+                    <li><code>5</code> está en la posición de las decenas ($10^1$)</li>
+                    <li><code>3</code> está en la posición de las unidades ($10^0$)</li>
+                </ul>
+                <p>Así, $453 = (4 \times 10^2) + (5 \times 10^1) + (3 \times 10^0) = (4 \times 100) + (5 \times 10) + (3 \times 1) = 400 + 50 + 3 = 453$.</p>
+            </div>
+
+            <h3>2.2. Sistema Binario (Base 2)</h3>
+            <div class="concept-box">
+                <p>Es el lenguaje fundamental de las computadoras. Se basa en solo 2 dígitos: <span class="highlight">0 (cero) y 1 (uno)</span>. Cada posición de un dígito binario (llamado <span class="highlight">bit</span>) tiene un valor posicional que es una <span class="highlight">potencia de 2</span>.</p>
+            </div>
+            <ul>
+                <li><span class="highlight">Bit:</span> La unidad más pequeña de información, que puede ser 0 o 1.</li>
+                <li><span class="highlight">Byte:</span> Un grupo de 8 bits. Las direcciones IPv4 se dividen en 4 octetos, y cada octeto es un byte.</li>
+            </ul>
+            <div class="example-box">
+                <h3>Ejemplo: Número Binario <code>1011</code></h3>
+                <ul>
+                    <li>El bit más a la derecha es la posición $2^0$ (unidades).</li>
+                    <li>El siguiente es la posición $2^1$ (dos).</li>
+                    <li>El siguiente es la posición $2^2$ (cuatro).</li>
+                    <li>Y así sucesivamente.</li>
+                </ul>
+            </div>
+            <div class="table-container">
+                <h3>Tabla de Valores Posicionales Binarios (para un Octeto - 8 bits):</h3>
+                <table class="conversion-table">
+                    <thead>
+                        <tr>
+                            <th>Posición</th>
+                            <th>$2^7$</th>
+                            <th>$2^6$</th>
+                            <th>$2^5$</th>
+                            <th>$2^4$</th>
+                            <th>$2^3$</th>
+                            <th>$2^2$</th>
+                            <th>$2^1$</th>
+                            <th>$2^0$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Valor Decimal</td>
+                            <td>128</td>
+                            <td>64</td>
+                            <td>32</td>
+                            <td>16</td>
+                            <td>8</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="text-align: center; font-size: 0.9em; color: #666;">Esta tabla es fundamental para las conversiones.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Conversión de Binario a Decimal</h2>
+            <p>Para convertir un número binario a decimal, se multiplica cada bit por su valor posicional (potencia de 2) y se suman los resultados.</p>
+
+            <h3>Método Paso a Paso:</h3>
+            <ol>
+                <li>Escribe el número binario.</li>
+                <li>Debajo de cada bit, escribe la potencia de 2 correspondiente a su posición, comenzando desde $2^0$ (1) en el bit más a la derecha y aumentando hacia la izquierda ($2^1=2, 2^2=4, 2^3=8$, etc.).</li>
+                <li>Multiplica cada bit por su valor posicional.</li>
+                <li>Suma todos los resultados de las multiplicaciones.</li>
+            </ol>
+            <div class="example-box">
+                <h3>Ejemplo 1: Convertir <code>11000000</code> a Decimal</h3>
+                <p>Representa el primer octeto de <code>192.168.1.10</code></p>
+                <pre>
+Posiciones:  $2^7$   $2^6$   $2^5$   $2^4$   $2^3$   $2^2$   $2^1$   $2^0$
+Valores:    128     64      32      16      8       4       2       1
+Binario:    1       1       0       0       0       0       0       0
+
+Cálculo:
+$(1 \times 128) + (1 \times 64) + (0 \times 32) + (0 \times 16) + (0 \times 8) + (0 \times 4) + (0 \times 2) + (0 \times 1)$
+$= 128 + 64 + 0 + 0 + 0 + 0 + 0 + 0$
+$= 192$
+
+Por lo tanto, <code>11000000</code> en binario es <code>192</code> en decimal.
+                </pre>
+            </div>
+            <div class="example-box">
+                <h3>Ejemplo 2: Convertir <code>00001010</code> a Decimal</h3>
+                <p>Representa el cuarto octeto de <code>192.168.1.10</code></p>
+                <pre>
+Posiciones:  $2^7$   $2^6$   $2^5$   $2^4$   $2^3$   $2^2$   $2^1$   $2^0$
+Valores:    128     64      32      16      8       4       2       1
+Binario:    0       0       0       0       1       0       1       0
+
+Cálculo:
+$(0 \times 128) + (0 \times 64) + (0 \times 32) + (0 \times 16) + (1 \times 8) + (0 \times 4) + (1 \times 2) + (0 \times 1)$
+$= 0 + 0 + 0 + 0 + 8 + 0 + 2 + 0$
+$= 10$
+
+Por lo tanto, <code>00001010</code> en binario es <code>10</code> en decimal.
+                </pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Conversión de Decimal a Binario</h2>
+            <p>Para convertir un número decimal a binario, se utiliza el método de divisiones sucesivas por 2 y se toman los residuos en orden inverso.</p>
+
+            <h3>Método Paso a Paso (Divisiones Sucesivas):</h3>
+            <ol>
+                <li>Divide el número decimal por 2.</li>
+                <li>Anota el residuo (será 0 o 1).</li>
+                <li>Toma el cociente de la división anterior y divídelo nuevamente por 2.</li>
+                <li>Repite los pasos 2 y 3 hasta que el cociente sea 0.</li>
+                <li>El número binario se forma leyendo los residuos de abajo hacia arriba (del último residuo al primero).</li>
+            </ol>
+            <div class="example-box">
+                <h3>Ejemplo 1: Convertir <code>192</code> a Binario</h3>
+                <pre>
+192 ÷ 2 = 96  Residuo 0
+ 96 ÷ 2 = 48  Residuo 0
+ 48 ÷ 2 = 24  Residuo 0
+ 24 ÷ 2 = 12  Residuo 0
+ 12 ÷ 2 = 6   Residuo 0
+  6 ÷ 2 = 3   Residuo 0
+  3 ÷ 2 = 1   Residuo 1
+  1 ÷ 2 = 0   Residuo 1
+
+Leyendo los residuos de abajo hacia arriba: <code>11000000</code>.
+Por lo tanto, <code>192</code> en decimal es <code>11000000</code> en binario.
+                </pre>
+            </div>
+            <div class="example-box">
+                <h3>Ejemplo 2: Convertir <code>10</code> a Binario</h3>
+                <pre>
+10 ÷ 2 = 5   Residuo 0
+ 5 ÷ 2 = 2   Residuo 1
+ 2 ÷ 2 = 1   Residuo 0
+ 1 ÷ 2 = 0   Residuo 1
+
+Leyendo los residuos de abajo hacia arriba: <code>1010</code>.
+Para un octeto (8 bits), lo rellenamos con ceros a la izquierda: <code>00001010</code>.
+Por lo tanto, <code>10</code> en decimal es <code>00001010</code> en binario.
+                </pre>
+            </div>
+		<h3><a href="Ejercicio Clase 8.html" id="menu">Ir al ejercicio</a></h3>
+        </div>
+
+        <div class="activity-box">
+            <h2>Actividades Interactivas de la Sesión: ¡Convirtiendo Números!</h2>
+            <ol>
+                <li><span class="highlight">Actividad 1: "Conviértete en Traductor Binario" (20 minutos):</span>
+                    <p>En sus cuadernos o en hojas de trabajo, conviertan los siguientes números binarios a su equivalente decimal. Una vez que hayan terminado, pueden verificar sus respuestas.</p>
+                    <div class="interactive-instructions">
+                        <h4>Ejercicios: Binario a Decimal</h4>
+                        <ol>
+                            <li><code>10110010</code></li>
+                            <li><code>01111111</code></li>
+                            <li><code>11110000</code></li>
+                            <li><code>00000001</code></li>
+                            <li><code>10000000</code></li>
+                        </ol>
+                        <button class="toggle-button" onclick="toggleSolution('sol1')">Mostrar/Ocultar Soluciones</button>
+                        <div class="solution-box" id="sol1">
+                            <h4>Soluciones:</h4>
+                            <ol>
+                                <li><code>10110010</code> = $(1 \times 128) + (0 \times 64) + (1 \times 32) + (1 \times 16) + (0 \times 8) + (0 \times 4) + (1 \times 2) + (0 \times 1) = 128 + 32 + 16 + 2 = \mathbf{178}$</li>
+                                <li><code>01111111</code> = $(0 \times 128) + (1 \times 64) + (1 \times 32) + (1 \times 16) + (1 \times 8) + (1 \times 4) + (1 \times 2) + (1 \times 1) = 64 + 32 + 16 + 8 + 4 + 2 + 1 = \mathbf{127}$</li>
+                                <li><code>11110000</code> = $(1 \times 128) + (1 \times 64) + (1 \times 32) + (1 \times 16) + (0 \times 8) + (0 \times 4) + (0 \times 2) + (0 \times 1) = 128 + 64 + 32 + 16 = \mathbf{240}$</li>
+                                <li><code>00000001</code> = $(0 \times 128) + \dots + (1 \times 1) = \mathbf{1}$</li>
+                                <li><code>10000000</code> = $(1 \times 128) + \dots + (0 \times 1) = \mathbf{128}$</li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 2: "Del Decimal al Bit" (20 minutos):</span>
+                    <p>En sus cuadernos o en hojas de trabajo, conviertan los siguientes números decimales a su equivalente binario (en formato de 8 bits, rellenando con ceros a la izquierda si es necesario). Luego, verifiquen sus respuestas.</p>
+                    <div class="interactive-instructions">
+                        <h4>Ejercicios: Decimal a Binario</h4>
+                        <ol>
+                            <li><code>255</code></li>
+                            <li><code>67</code></li>
+                            <li><code>150</code></li>
+                            <li><code>5</code></li>
+                            <li><code>200</code></li>
+                        </ol>
+                        <button class="toggle-button" onclick="toggleSolution('sol2')">Mostrar/Ocultar Soluciones</button>
+                        <div class="solution-box" id="sol2">
+                            <h4>Soluciones:</h4>
+                            <ol>
+                                <li><code>255</code> = <code>11111111</code></li>
+                                <li><code>67</code> = <code>01000011</code></li>
+                                <li><code>150</code> = <code>10010110</code></li>
+                                <li><code>5</code> = <code>00000101</code></li>
+                                <li><code>200</code> = <code>11001000</code></li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+                <li><span class="highlight">Actividad 3: "Construye una IP desde Ceros y Unos" (30 minutos):</span>
+                    <p>Esta actividad combina ambas conversiones y les permite ver cómo se forma una dirección IP completa a partir de sus componentes binarios.</p>
+                    <div class="interactive-instructions">
+                        <h4>Instrucciones para la Actividad:</h4>
+                        <ol>
+                            <li>Formen grupos de 3-4 personas.</li>
+                            <li>A cada grupo se le dará una "dirección IP en binario" dividida en 4 octetos. Su tarea es convertir cada octeto binario a decimal para formar la dirección IPv4 completa.</li>
+                            <li><strong>Ejemplo de "Dirección IP Binaria" (el docente proporcionará una diferente para cada grupo):</strong>
+                                <ul>
+                                    <li>Octeto 1: <code>11000000</code></li>
+                                    <li>Octeto 2: <code>10101000</code></li>
+                                    <li>Octeto 3: <code>00000001</code></li>
+                                    <li>Octeto 4: <code>00001011</code></li>
+                                </ul>
+                            </li>
+                            <li>Conviertan cada octeto binario a su valor decimal.</li>
+                            <li>Escriban la dirección IPv4 completa en notación decimal punteada.</li>
+                            <li>Luego, el docente proporcionará un número decimal (ej. <code>172.16.20.1</code>) y cada grupo deberá convertir cada octeto a binario.</li>
+                            <li>Al finalizar, cada grupo compartirá sus resultados y explicará el proceso de una de sus conversiones.</li>
+                        </ol>
+                        <p><strong>Objetivo:</strong> Aplicar las conversiones binario-decimal en el contexto de las direcciones IP, fortaleciendo la comprensión de su estructura.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>5. Conclusión de la Sesión:</h2>
+            <p>Hoy hemos desmitificado el lenguaje binario, el fundamento de cómo las computadoras procesan y transmiten información. Dominar las conversiones entre binario y decimal no solo es una habilidad técnica crucial, sino que también les proporciona una comprensión más profunda de la estructura de las direcciones IP y cómo se representan internamente en la red.</p>
+            <p>Esta habilidad será invaluable en las próximas sesiones, especialmente cuando nos adentremos en el subnetting, donde la manipulación de bits y octetos es el pan de cada día. ¡Sigan practicando y verán cómo se vuelven expertos en el idioma de las redes!</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionBox = document.getElementById(id);
+            if (solutionBox.style.display === 'none' || solutionBox.style.display === '') {
+                solutionBox.style.display = 'block';
+            } else {
+                solutionBox.style.display = 'none';
+            }
+        }
+    </script>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
