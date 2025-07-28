@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9: Práctica de Subnetting y Direccionamiento IP en Packet Tracer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e7ee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #004085;
+        }
+        h2 {
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+        }
+        h4 {
+            font-size: 1.2em;
+            color: #0099e6;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .concept-box {
+            background-color: #e9f7fe;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .example-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #856404;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #ccc;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 20px 0;
+            background-color: #eee;
+            padding: 30px;
+            border-radius: 8px;
+            color: #555;
+        }
+        .interactive-instructions {
+            background-color: #e6f7ff;
+            border: 1px dashed #91d5ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap; /* Ensures long lines wrap */
+            word-wrap: break-word;
+        }
+        .solution-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+        }
+        .toggle-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .toggle-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sesión 9: Práctica de Subnetting y Direccionamiento IP en Packet Tracer</h1>
+        <p class="quote">"De la teoría a la práctica: el subnetting es el arte de dividir, y Packet Tracer, nuestro lienzo."</p>
+
+        <div class="section">
+            <h2>1. Repaso Rápido: El Lenguaje y las Direcciones</h2>
+            <p>Hemos recorrido un largo camino desde los fundamentos de las redes, pasando por los modelos OSI y TCP/IP, hasta la estructura de las direcciones IPv4 y las conversiones binario-decimal. Hoy, es el momento de aplicar todo ese conocimiento en escenarios prácticos de subnetting y, lo más emocionante, ¡configurar redes reales en Cisco Packet Tracer!</p>
+            <div class="activity-box">
+                <h3>Actividad Rápida: "¿Qué valor es?" (5 minutos)</h3>
+                <p>El docente presentará un número binario de 8 bits o un número decimal. Rápidamente, conviértanlo al otro sistema.</p>
+                <ul>
+                    <li>Binario: <code>11001000</code> (Decimal: 200)</li>
+                    <li>Decimal: <code>15</code> (Binario: <code>00001111</code>)</li>
+                    <li>Binario: <code>00000000</code> (Decimal: 0)</li>
+                    <li>Decimal: <code>255</code> (Binario: <code>11111111</code>)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Refresco de Subnetting: La Lógica de la División</h2>
+            <p>El subnetting es el proceso de dividir una red IP grande en subredes más pequeñas y manejables. Esto es crucial por varias razones:</p>
+            <ul>
+                <li><span class="highlight">Eficiencia del Espacio IP:</span> Reduce el desperdicio de direcciones IP.</li>
+                <li><span class="highlight">Rendimiento de la Red:</span> Reduce el tamaño de los dominios de broadcast, lo que mejora el rendimiento.</li>
+                <li><span class="highlight">Seguridad:</span> Permite aislar segmentos de red para mayor seguridad.</li>
+                <li><span class="highlight">Gestión Simplificada:</span> Facilita la administración de redes grandes.</li>
+            </ul>
+            <div class="concept-box">
+                <h3>Conceptos Clave del Subnetting:</h3>
+                <ul>
+                    <li><span class="highlight">Dirección de Red:</span> La primera dirección en una subred, donde todos los bits de la porción de host son ceros. No se puede asignar a un host.</li>
+                    <li><span class="highlight">Dirección de Broadcast:</span> La última dirección en una subred, donde todos los bits de la porción de host son unos. Se utiliza para enviar datos a todos los hosts en esa subred. No se puede asignar a un host.</li>
+                    <li><span class="highlight">Rango de Hosts Válidos:</span> Las direcciones IP entre la dirección de red y la dirección de broadcast que pueden ser asignadas a dispositivos.</li>
+                    <li><span class="highlight">Máscara de Subred:</span> Un número de 32 bits que indica qué parte de una dirección IP corresponde a la porción de red y cuál a la porción de host. Se representa con unos para la porción de red y ceros para la porción de host.</li>
+                    <li><span class="highlight">Notación CIDR (Classless Inter-Domain Routing):</span> Una forma concisa de representar la máscara de subred, indicando el número de bits de red (ej. `/24` para <code>255.255.255.0</code>).</li>
+                </ul>
+            </div>
+            <div class="table-container">
+                <h3>Tabla de Máscaras de Subred Comunes y sus Propiedades:</h3>
+                <table class="conversion-table">
+                    <thead>
+                        <tr>
+                            <th>Prefijo CIDR</th>
+                            <th>Máscara Decimal</th>
+                            <th>N° de Bits de Host</th>
+                            <th>N° de Hosts Válidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>/8</td><td>255.0.0.0</td><td>24</td><td>16,777,214</td></tr>
+                        <tr><td>/16</td><td>255.255.0.0</td><td>16</td><td>65,534</td></tr>
+                        <tr><td>/24</td><td>255.255.255.0</td><td>8</td><td>254</td></tr>
+                        <tr><td>/25</td><td>255.255.255.128</td><td>7</td><td>126</td></tr>
+                        <tr><td>/26</td><td>255.255.255.192</td><td>6</td><td>62</td></tr>
+                        <tr><td>/27</td><td>255.255.255.224</td><td>5</td><td>30</td></tr>
+                        <tr><td>/28</td><td>255.255.255.240</td><td>4</td><td>14</td></tr>
+                        <tr><td>/29</td><td>255.255.255.248</td><td>3</td><td>6</td></tr>
+                        <tr><td>/30</td><td>255.255.255.252</td><td>2</td><td>2</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align: center; font-size: 0.9em; color: #666;">Esta tabla es una referencia rápida para el subnetting.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Actividad 1: Ejercicios de Subnetting (Manual)</h2>
+            <p>Vamos a poner a prueba sus habilidades de cálculo de subnetting. Realicen los siguientes ejercicios en sus cuadernos.</p>
+
+            <div class="interactive-instructions">
+                <h4>Ejercicio 1.1: Subnetting de Clase C</h4>
+                <p>Dada la dirección de red <code>192.168.10.0/24</code>, se necesitan crear 4 subredes.</p>
+                <p>Calcula para cada una de las 4 subredes:</p>
+                <ol>
+                    <li>La nueva Máscara de Subred en decimal punteado y notación CIDR.</li>
+                    <li>La Dirección de Red (Network ID).</li>
+                    <li>El Rango de Hosts Válidos.</li>
+                    <li>La Dirección de Broadcast.</li>
+                </ol>
+                <button class="toggle-button" onclick="toggleSolution('sol-subnet-1')">Mostrar/Ocultar Solución 1.1</button>
+                <div class="solution-box" id="sol-subnet-1">
+                    <h4>Solución Ejercicio 1.1:</h4>
+                    <p>Necesitamos 4 subredes. Para calcular el número de bits prestados ($2^n \ge \text{número de subredes}$), $2^2 = 4$. Así que necesitamos prestar 2 bits de la porción de host.</p>
+                    <p>Máscara original: <code>/24</code> (24 bits de red). Nueva máscara: $24 + 2 = \mathbf{/26}$</p>
+                    <p><strong>Explicación de la Máscara <code>255.255.255.192</code>:</strong></p>
+                    <p>Una máscara de subred `/26` significa que los primeros 26 bits son para la porción de red. Los primeros tres octetos (24 bits) ya están en <code>255.255.255</code>. Necesitamos 2 bits más del cuarto octeto.</p>
+                    <p>En el cuarto octeto, los 8 bits tienen los siguientes valores posicionales (de izquierda a derecha):</p>
+                    <pre>
+Posición de bit:  1   2   3   4   5   6   7   8
+Valor decimal:   128 64  32  16   8   4   2   1
+                    </pre>
+                    <p>Si tomamos 2 bits de la porción de host y los convertimos a bits de red, los dos bits más a la izquierda del cuarto octeto se "encienden" (se ponen en 1):</p>
+                    <pre>
+Bits en el cuarto octeto: 1  1  0  0  0  0  0  0
+Valores decimales sumados: 128 + 64 = 192
+                    </pre>
+                    <p>Por lo tanto, la máscara en decimal es <code>255.255.255.192</code>.</p>
+                    <p><strong>Explicación del Salto de Bloque (Block Size):</strong></p>
+                    <p>El salto de bloque es el tamaño de cada subred. Se calcula tomando `256` y restándole el valor decimal del octeto donde la máscara de subred cambió (en este caso, 192 en el último octeto).</p>
+                    <p>Salto de Bloque = $256 - 192 = \mathbf{64}$.</p>
+                    <p>Esto significa que las direcciones de red de cada subred aumentarán en múltiplos de 64.</p>
+
+                    <p><strong>Subred 1:</strong></p>
+                    <ul>
+                        <li>Dirección de Red: <code>192.168.10.0</code></li>
+                        <li>Rango de Hosts Válidos: <code>192.168.10.1</code> a <code>192.168.10.62</code></li>
+                        <li>Dirección de Broadcast: <code>192.168.10.63</code></li>
+                    </ul>
+                    <p><strong>Subred 2:</strong></p>
+                    <ul>
+                        <li>Dirección de Red: <code>192.168.10.64</code></li>
+                        <li>Rango de Hosts Válidos: <code>192.168.10.65</code> a <code>192.168.10.126</code></li>
+                        <li>Dirección de Broadcast: <code>192.168.10.127</code></li>
+                    </ul>
+                    <p><strong>Subred 3:</strong></p>
+                    <ul>
+                        <li>Dirección de Red: <code>192.168.10.128</code></li>
+                        <li>Rango de Hosts Válidos: <code>192.168.10.129</code> a <code>192.168.10.190</code></li>
+                        <li>Dirección de Broadcast: <code>192.168.10.191</code></li>
+                    </ul>
+                    <p><strong>Subred 4:</strong></p>
+                    <ul>
+                        <li>Dirección de Red: <code>192.168.10.192</code></li>
+                        <li>Rango de Hosts Válidos: <code>192.168.10.193</code> a <code>192.168.10.254</code></li>
+                        <li>Dirección de Broadcast: <code>192.168.10.255</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Actividad 2: Diseño de Esquema de Direccionamiento IP para una Red Pequeña</h2>
+            <p>Ahora, aplicaremos el subnetting a un escenario más realista. Diseñaremos el esquema de direccionamiento para una pequeña empresa.</p>
+
+            <div class="interactive-instructions">
+                <h4>Escenario: Red de la Empresa "TechSolutions"</h4>
+                <p>La empresa "TechSolutions" ha adquirido la dirección de red pública <code>203.0.113.0/24</code> y necesita dividirla en varias subredes para sus departamentos:</p>
+                <ul>
+                    <li><span class="highlight">Administración:</span> 50 hosts</li>
+                    <li><span class="highlight">Ventas:</span> 30 hosts</li>
+                    <li><span class="highlight">Soporte Técnico:</span> 20 hosts</li>
+                    <li><span class="highlight">Servidores (Web, Correo):</span> 10 hosts (asignación estática)</li>
+                    <li><span class="highlight">Wi-Fi Invitados:</span> 60 hosts</li>
+                    <li><span class="highlight">Enlaces WAN:</span> 2 enlaces punto a punto (2 hosts por enlace)</li>
+                </ul>
+                <p><strong>Tarea:</strong> Diseña un esquema de direccionamiento IP utilizando VLSM (Variable Length Subnet Masking) para optimizar el uso de direcciones. Asigna las subredes de mayor a menor requisito de hosts.</p>
+                <p>Para cada subred, determina:</p>
+                <ol>
+                    <li>El nombre del segmento.</li>
+                    <li>La Máscara de Subred en notación CIDR y decimal punteado.</li>
+                    <li>La Dirección de Red (Network ID).</li>
+                    <li>El Rango de Hosts Válidos.</li>
+                    <li>La Dirección de Broadcast.</li>
+                    <li>La Dirección IP del Gateway (primera IP válida del rango de hosts).</li>
+                </ol>
+                <button class="toggle-button" onclick="toggleSolution('sol-design')">Mostrar/Ocultar Solución de Diseño</button>
+                <div class="solution-box" id="sol-design">
+                    <h4>Solución de Diseño (Ejemplo):</h4>
+                    <p>Dirección de red inicial: <code>203.0.113.0/24</code></p>
+                    <p>Requisitos de hosts (ordenados de mayor a menor):</p>
+                    <ul>
+                        <li>Wi-Fi Invitados: 60 hosts ($2^6 - 2 = 62$ hosts válidos, máscara /26)</li>
+                        <li>Administración: 50 hosts ($2^6 - 2 = 62$ hosts válidos, máscara /26)</li>
+                        <li>Ventas: 30 hosts ($2^5 - 2 = 30$ hosts válidos, máscara /27)</li>
+                        <li>Soporte Técnico: 20 hosts ($2^5 - 2 = 30$ hosts válidos, máscara /27)</li>
+                        <li>Servidores: 10 hosts ($2^4 - 2 = 14$ hosts válidos, máscara /28)</li>
+                        <li>Enlaces WAN: 2 hosts ($2^2 - 2 = 2$ hosts válidos, máscara /30)</li>
+                    </ul>
+
+                    <p><strong>Esquema de Direccionamiento Propuesto:</strong></p>
+                    <ul>
+                        <li><span class="highlight">Wi-Fi Invitados:</span>
+                            <ul>
+                                <li>Máscara: <code>/26</code> (<code>255.255.255.192</code>)</li>
+                                <li>Red: <code>203.0.113.0</code></li>
+                                <li>Hosts: <code>203.0.113.1</code> - <code>203.0.113.62</code></li>
+                                <li>Broadcast: <code>203.0.113.63</code></li>
+                                <li>Gateway: <code>203.0.113.1</code></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Administración:</span>
+                            <ul>
+                                <li>Máscara: <code>/26</code> (<code>255.255.255.192</code>)</li>
+                                <li>Red: <code>203.0.113.64</code></li>
+                                <li>Hosts: <code>203.0.113.65</code> - <code>203.0.113.126</code></li>
+                                <li>Broadcast: <code>203.0.113.127</code></li>
+                                <li>Gateway: <code>203.0.113.65</code></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Ventas:</span>
+                            <ul>
+                                <li>Máscara: <code>/27</code> (<code>255.255.255.224</code>)</li>
+                                <li>Red: <code>203.0.113.128</code></li>
+                                <li>Hosts: <code>203.0.113.129</code> - <code>203.0.113.158</code></li>
+                                <li>Broadcast: <code>203.0.113.159</code></li>
+                                <li>Gateway: <code>203.0.113.129</code></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Soporte Técnico:</span>
+                            <ul>
+                                <li>Máscara: <code>/27</code> (<code>255.255.255.224</code>)</li>
+                                <li>Red: <code>203.0.113.160</code></li>
+                                <li>Hosts: <code>203.0.113.161</code> - <code>203.0.113.190</code></li>
+                                <li>Broadcast: <code>203.0.113.191</code></li>
+                                <li>Gateway: <code>203.0.113.161</code></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Servidores:</span>
+                            <ul>
+                                <li>Máscara: <code>/28</code> (<code>255.255.255.240</code>)</li>
+                                <li>Red: <code>203.0.113.192</code></li>
+                                <li>Hosts: <code>203.0.113.193</code> - <code>203.0.113.206</code></li>
+                                <li>Broadcast: <code>203.0.113.207</code></li>
+                                <li>Gateway: <code>203.0.113.193</code></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Enlace WAN 1 (Router a ISP):</span>
+                            <ul>
+                                <li>Máscara: <code>/30</code> (<code>255.255.255.252</code>)</li>
+                                <li>Red: <code>203.0.113.208</code></li>
+                                <li>Hosts: <code>203.0.113.209</code> - <code>203.0.113.210</code></li>
+                                <li>Broadcast: <code>203.0.113.211</code></li>
+                                <li>IPs a usar: Router: <code>203.0.113.209</code>, ISP: <code>203.0.113.210</code></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Enlace WAN 2 (Router a Sucursal/Otra Red):</span>
+                            <ul>
+                                <li>Máscara: <code>/30</code> (<code>255.255.255.252</code>)</li>
+                                <li>Red: <code>203.0.113.212</code></li>
+                                <li>Hosts: <code>203.0.113.213</code> - <code>203.0.113.214</code></li>
+                                <li>Broadcast: <code>203.0.113.215</code></li>
+                                <li>IPs a usar: Router: <code>203.0.113.213</code>, Sucursal: <code>203.0.113.214</code></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Actividad 3: Implementación en Cisco Packet Tracer (Configuración GUI)</h2>
+            <p>Ahora, vamos a llevar nuestro diseño a la práctica. Necesitarán tener Cisco Packet Tracer instalado. Si no lo tienen, pueden descargarlo desde la página de Cisco Networking Academy (requiere una cuenta gratuita).</p>
+
+            <div class="concept-box">
+                <h3>Cisco Packet Tracer: Su Laboratorio Virtual</h3>
+                <p>Cisco Packet Tracer es una herramienta de simulación de red que les permite diseñar, configurar y solucionar problemas de redes sin necesidad de hardware físico. Es invaluable para aprender conceptos de redes de forma práctica.</p>
+            </div>
+
+            <div class="interactive-instructions">
+                <h4>Escenario a Implementar en Packet Tracer: Conectando Dos LANs con DHCP</h4>
+                <p>Crearemos una topología con dos redes LAN separadas, cada una con su propio servidor DHCP, conectadas por un router.</p>
+                <p><strong>Esquema de Direccionamiento para este Ejercicio:</strong></p>
+                <ul>
+                    <li><span class="highlight">LAN 1 (Administración):</span>
+                        <ul>
+                            <li>Red: <code>192.168.1.0/24</code></li>
+                            <li>Gateway (Router): <code>192.168.1.1</code></li>
+                            <li>Servidor DHCP: <code>192.168.1.2</code></li>
+                            <li>Rango DHCP: <code>192.168.1.10</code> a <code>192.168.1.254</code></li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">LAN 2 (Ventas):</span>
+                        <ul>
+                            <li>Red: <code>192.168.2.0/24</code></li>
+                            <li>Gateway (Router): <code>192.168.2.1</code></li>
+                            <li>Servidor DHCP: <code>192.168.2.2</code></li>
+                            <li>Rango DHCP: <code>192.168.2.10</code> a <code>192.168.2.254</code></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>Dispositivos Necesarios:</strong></p>
+                <ul>
+                    <li>1 Router (ej. 1941 o 2911)</li>
+                    <li>2 Switches (ej. 2960-24TT)</li>
+                    <li>4 PCs (PC-PT) - 2 por LAN</li>
+                    <li>2 Servidores (Server-PT) - 1 por LAN, para DHCP</li>
+                </ul>
+
+                <h4>Pasos Detallados para la Configuración (¡TODO GUI!):</h4>
+
+                <h3>Paso 1: Construcción de la Topología Física</h3>
+                <ol>
+                    <li>Abra Cisco Packet Tracer.</li>
+                    <li>En la barra inferior izquierda, haga clic en <span class="highlight">"Network Devices"</span> (Dispositivos de Red), luego en <span class="highlight">"Routers"</span>. Arrastre un <span class="highlight">Router 1941</span> (o 2911) al área de trabajo.</li>
+                    <li>Haga clic en <span class="highlight">"Switches"</span>. Arrastre dos <span class="highlight">Switch 2960-24TT</span> al área de trabajo.</li>
+                    <li>Haga clic en <span class="highlight">"End Devices"</span> (Dispositivos Finales). Arrastre cuatro <span class="highlight">PC</span> y dos <span class="highlight">Server</span> al área de trabajo.</li>
+                    <li><span class="highlight">Organice los dispositivos:</span> Coloque el Router en el centro. A la izquierda, un Switch, dos PCs y un Server (para LAN 1). A la derecha, el otro Switch, dos PCs y el otro Server (para LAN 2).</li>
+                    <li><span class="highlight">Conecte los dispositivos:</span> Haga clic en el icono de <span class="highlight">"Connections"</span> (Conexiones) - el rayo.
+                        <ul>
+                            <li>Seleccione <span class="highlight">"Copper Straight-Through"</span> (Cable de Cobre Directo).</li>
+                            <li>Conecte <span class="highlight">Router (GigabitEthernet0/0)</span> a <span class="highlight">Switch1 (FastEthernet0/1)</span>.</li>
+                            <li>Conecte <span class="highlight">Router (GigabitEthernet0/1)</span> a <span class="highlight">Switch2 (FastEthernet0/1)</span>.</li>
+                            <li>Conecte <span class="highlight">PC0</span> a <span class="highlight">Switch1 (FastEthernet0/2)</span>.</li>
+                            <li>Conecte <span class="highlight">PC1</span> a <span class="highlight">Switch1 (FastEthernet0/3)</span>.</li>
+                            <li>Conecte <span class="highlight">Server0 (DHCP LAN 1)</span> a <span class="highlight">Switch1 (FastEthernet0/4)</span>.</li>
+                            <li>Conecte <span class="highlight">PC2</span> a <span class="highlight">Switch2 (FastEthernet0/2)</span>.</li>
+                            <li>Conecte <span class="highlight">PC3</span> a <span class="highlight">Switch2 (FastEthernet0/3)</span>.</li>
+                            <li>Conecte <span class="highlight">Server1 (DHCP LAN 2)</span> a <span class="highlight">Switch2 (FastEthernet0/4)</span>.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">¡Observe los indicadores de enlace!</span> Los círculos al lado de las conexiones se pondrán verdes cuando los enlaces estén activos (puede tardar unos segundos).</li>
+                </ol>
+
+                <h3>Paso 2: Configuración de las Interfaces del Router (Gateways)</h3>
+                <p>Configuraremos las interfaces del router para que actúen como el Gateway (puerta de enlace) para cada LAN.</p>
+                <ol>
+                    <li>Haga clic en el <span class="highlight">Router</span>.</li>
+                    <li>Vaya a la pestaña <span class="highlight">"Config"</span> (Configuración).</li>
+                    <li>En el menú de la izquierda, haga clic en <span class="highlight">"Interface"</span> (Interfaz).</li>
+                    <li>Seleccione la interfaz <span class="highlight">"GigabitEthernet0/0"</span> (para LAN 1 - Administración).
+                        <ul>
+                            <li>Marque la casilla <span class="highlight">"Port Status"</span> (Estado del Puerto) a <span class="highlight">"On"</span> (Encendido).</li>
+                            <li>En el campo <span class="highlight">"IP Address"</span> (Dirección IP), escriba <code>192.168.1.1</code>.</li>
+                            <li>En el campo <span class="highlight">"Subnet Mask"</span> (Máscara de Subred), escriba <code>255.255.255.0</code>.</li>
+                        </ul>
+                    </li>
+                    <li>En el menú de la izquierda, seleccione la interfaz <span class="highlight">"GigabitEthernet0/1"</span> (para LAN 2 - Ventas).
+                        <ul>
+                            <li>Marque la casilla <span class="highlight">"Port Status"</span> a <span class="highlight">"On"</span>.</li>
+                            <li>En el campo <span class="highlight">"IP Address"</span>, escriba <code>192.168.2.1</code>.</li>
+                            <li>En el campo <span class="highlight">"Subnet Mask"</span>, escriba <code>255.255.255.0</code>.</li>
+                        </ul>
+                    </li>
+                    <li>Cierre la ventana del Router. Observe que los enlaces del router a los switches se pondrán verdes.</li>
+                </ol>
+
+                <h3>Paso 3: Configuración de los Servidores DHCP (GUI)</h3>
+                <p>Cada servidor proporcionará direcciones IP dinámicas a los dispositivos de su respectiva LAN.</p>
+
+                <h4>Configuración de Server0 (DHCP para LAN 1 - Administración)</h4>
+                <ol>
+                    <li>Haga clic en <span class="highlight">Server0</span>.</li>
+                    <li>Vaya a la pestaña <span class="highlight">"Desktop"</span> (Escritorio).</li>
+                    <li>Haga clic en <span class="highlight">"IP Configuration"</span> (Configuración IP).
+                        <ul>
+                            <li>Seleccione <span class="highlight">"Static"</span> (Estático).</li>
+                            <li>En <span class="highlight">"IP Address"</span>, escriba <code>192.168.1.2</code>.</li>
+                            <li>En <span class="highlight">"Subnet Mask"</span>, escriba <code>255.255.255.0</code>.</li>
+                            <li>En <span class="highlight">"Default Gateway"</span>, escriba <code>192.168.1.1</code> (la IP de la interfaz del router para esta LAN).</li>
+                            <li>En <span class="highlight">"DNS Server"</span>, puede escribir <code>192.168.1.2</code> (el propio servidor si va a ofrecer servicios DNS) o <code>8.8.8.8</code> (DNS público de Google). Para este ejercicio, use <code>192.168.1.2</code>.</li>
+                        </ul>
+                    </li>
+                    <li>Ahora, vaya a la pestaña <span class="highlight">"Services"</span> (Servicios).</li>
+                    <li>En el menú de la izquierda, haga clic en <span class="highlight">"DHCP"</span>.
+                        <ul>
+                            <li>Asegúrese de que el servicio <span class="highlight">"On"</span> (Encendido) esté seleccionado.</li>
+                            <li>En <span class="highlight">"Pool Name"</span>, escriba `LAN1-ADMIN` (o cualquier nombre descriptivo).</li>
+                            <li>En <span class="highlight">"Default Gateway"</span>, escriba <code>192.168.1.1</code>.</li>
+                            <li>En <span class="highlight">"DNS Server"</span>, escriba <code>192.168.1.2</code>.</li>
+                            <li>En <span class="highlight">"Start IP Address"</span> (Dirección IP de Inicio), escriba <code>192.168.1.10</code> (para que las primeras IPs queden libres para dispositivos estáticos).</li>
+                            <li>En <span class="highlight">"Subnet Mask"</span>, escriba <code>255.255.255.0</code>.</li>
+                            <li>En <span class="highlight">"Maximum Number of Users"</span> (Número Máximo de Usuarios), puede dejar el valor por defecto o ajustarlo (ej. 245 para esta subred).</li>
+                            <li>Haga clic en el botón <span class="highlight">"Save"</span> (Guardar) para guardar la configuración del pool.</li>
+                        </ul>
+                    </li>
+                    <li>Cierre la ventana de Server0.</li>
+                </ol>
+
+                <h4>Configuración de Server1 (DHCP para LAN 2 - Ventas)</h4>
+                <ol>
+                    <li>Haga clic en <span class="highlight">Server1</span>.</li>
+                    <li>Vaya a la pestaña <span class="highlight">"Desktop"</span>.</li>
+                    <li>Haga clic en <span class="highlight">"IP Configuration"</span>.
+                        <ul>
+                            <li>Seleccione <span class="highlight">"Static"</span>.</li>
+                            <li>En <span class="highlight">"IP Address"</span>, escriba <code>192.168.2.2</code>.</li>
+                            <li>En <span class="highlight">"Subnet Mask"</span>, escriba <code>255.255.255.0</code>.</li>
+                            <li>En <span class="highlight">"Default Gateway"</span>, escriba <code>192.168.2.1</code> (la IP de la interfaz del router para esta LAN).</li>
+                            <li>En <span class="highlight">"DNS Server"</span>, escriba <code>192.168.2.2</code>.</li>
+                        </ul>
+                    </li>
+                    <li>Ahora, vaya a la pestaña <span class="highlight">"Services"</span>.</li>
+                    <li>En el menú de la izquierda, haga clic en <span class="highlight">"DHCP"</span>.
+                        <ul>
+                            <li>Asegúrese de que el servicio <span class="highlight">"On"</span> esté seleccionado.</li>
+                            <li>En <span class="highlight">"Pool Name"</span>, escriba `LAN2-VENTAS`.</li>
+                            <li>En <span class="highlight">"Default Gateway"</span>, escriba <code>192.168.2.1</code>.</li>
+                            <li>En <span class="highlight">"DNS Server"</span>, escriba <code>192.168.2.2</code>.</li>
+                            <li>En <span class="highlight">"Start IP Address"</span>, escriba <code>192.168.2.10</code>.</li>
+                            <li>En <span class="highlight">"Subnet Mask"</span>, escriba <code>255.255.255.0</code>.</li>
+                            <li>Haga clic en el botón <span class="highlight">"Save"</span> para guardar la configuración del pool.</li>
+                        </ul>
+                    </li>
+                    <li>Cierre la ventana de Server1.</li>
+                </ol>
+
+                <h3>Paso 4: Configuración de PCs (Clientes DHCP)</h3>
+                <p>Ahora, configuraremos las PCs para que obtengan sus direcciones IP automáticamente de los servidores DHCP.</p>
+                <ol>
+                    <li><span class="highlight">PC0 (LAN 1):</span>
+                        <ul>
+                            <li>Haga clic en <span class="highlight">PC0</span>.</li>
+                            <li>Vaya a la pestaña <span class="highlight">"Desktop"</span>.</li>
+                            <li>Haga clic en <span class="highlight">"IP Configuration"</span>.</li>
+                            <li>Seleccione la opción <span class="highlight">"DHCP"</span>.</li>
+                            <li>Observe cómo la PC solicita una dirección IP y la recibe del Server0. Verifique que haya recibido una IP en el rango <code>192.168.1.x</code> (ej. <code>192.168.1.10</code>), con Máscara <code>255.255.255.0</code>, Gateway <code>192.168.1.1</code> y DNS <code>192.168.1.2</code>.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">PC1 (LAN 1):</span>
+                        <ul>
+                            <li>Repita los pasos anteriores para <span class="highlight">PC1</span>. Debería obtener la siguiente IP disponible del pool de LAN 1 (ej. <code>192.168.1.11</code>).</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">PC2 (LAN 2):</span>
+                        <ul>
+                            <li>Haga clic en <span class="highlight">PC2</span>.</li>
+                            <li>Vaya a la pestaña <span class="highlight">"Desktop"</span>.</li>
+                            <li>Haga clic en <span class="highlight">"IP Configuration"</span>.</li>
+                            <li>Seleccione la opción <span class="highlight">"DHCP"</span>.</li>
+                            <li>Debería recibir una IP en el rango <code>192.168.2.x</code> (ej. <code>192.168.2.10</code>), con Máscara <code>255.255.255.0</code>, Gateway <code>192.168.2.1</code> y DNS <code>192.168.2.2</code>.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">PC3 (LAN 2):</span>
+                        <ul>
+                            <li>Repita los pasos anteriores para <span class="highlight">PC3</span>. Debería obtener la siguiente IP disponible del pool de LAN 2 (ej. <code>192.168.2.11</code>).</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Paso 5: Verificación de Conectividad</h3>
+                <p>Es crucial verificar que todos los dispositivos puedan comunicarse entre sí.</p>
+                <ol>
+                    <li><span class="highlight">Verificar IP en PCs:</span>
+                        <ul>
+                            <li>En cualquier PC, vaya a <span class="highlight">"Desktop" > "Command Prompt"</span>.</li>
+                            <li>Escriba `ipconfig` y presione Enter. Verifique que la IP, máscara, gateway y DNS sean correctos.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Ping dentro de la misma LAN (LAN 1):</span>
+                        <ul>
+                            <li>Desde <span class="highlight">PC0</span>, vaya a <span class="highlight">"Desktop" > "Command Prompt"</span>.</li>
+                            <li>Haga ping a <span class="highlight">PC1</span>: `ping 192.168.1.11` (o la IP que haya recibido PC1).</li>
+                            <li>Deberían ver respuestas (`Reply from...`).</li>
+                            <li>Haga ping a <span class="highlight">Server0</span>: `ping 192.168.1.2`. Deberían ver respuestas.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Ping a Gateway (desde cualquier PC):</span>
+                        <ul>
+                            <li>Desde <span class="highlight">PC0</span>, haga ping a su gateway: `ping 192.168.1.1`.</li>
+                            <li>Desde <span class="highlight">PC2</span>, haga ping a su gateway: `ping 192.168.2.1`.</li>
+                            <li>Deberían ver respuestas.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Ping entre LANs (a través del Router):</span>
+                        <ul>
+                            <li>Desde <span class="highlight">PC0 (LAN 1)</span>, haga ping a <span class="highlight">PC2 (LAN 2)</span>: `ping 192.168.2.10` (o la IP de PC2).</li>
+                            <li>Desde <span class="highlight">PC1 (LAN 1)</span>, haga ping a <span class="highlight">Server1 (LAN 2)</span>: `ping 192.168.2.2`.</li>
+                            <li>Deberían ver respuestas. Esto confirma que el router está enrutando correctamente entre las subredes.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Modo de Simulación (Opcional, para visualizar el flujo):</span>
+                        <ul>
+                            <li>En la parte inferior derecha de Packet Tracer, haga clic en la pestaña <span class="highlight">"Simulation"</span> (Simulación).</li>
+                            <li>Haga clic en <span class="highlight">"Add Simple PDU"</span> (Añadir PDU Simple) - el icono del sobre.</li>
+                            <li>Haga clic en una PC de LAN 1 y luego en una PC de LAN 2.</li>
+                            <li>Haga clic en el botón <span class="highlight">"Auto Capture / Play"</span> (Captura Automática / Reproducir) para ver cómo el paquete viaja a través de la red, pasando por el switch, el router y el otro switch hasta el destino.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Conclusión de la Sesión:</h2>
+            <p>¡Excelente trabajo! Hoy han aplicado sus conocimientos de subnetting y direccionamiento IP de una manera muy práctica, construyendo y configurando una red con dos LANs interconectadas y servidores DHCP en Cisco Packet Tracer.</p>
+            <p>La capacidad de configurar dispositivos de red utilizando la interfaz gráfica es fundamental para la administración de redes. Han visto cómo los dispositivos obtienen IPs automáticamente y cómo el router permite la comunicación entre diferentes segmentos de red. Esta experiencia práctica es invaluable y les prepara para desafíos de red más complejos.</p>
+            <p>Sigan experimentando con Packet Tracer. Intenten añadir más PCs, otro router, o incluso servicios como HTTP en los servidores. ¡La práctica hace al maestro en el mundo de las redes!</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionBox = document.getElementById(id);
+            const accessCode = "bits"; // Define el código de acceso
+
+            // Si la solución está oculta, pedir el código
+            if (solutionBox.style.display === 'none' || solutionBox.style.display === '') {
+                const userInput = prompt("Para ver la solución, por favor, ingresa el código 'bits'.");
+                if (userInput === accessCode) {
+                    solutionBox.style.display = 'block';
+                } else {
+                    alert("Código incorrecto. No se puede mostrar la solución.");
+                }
+            } else {
+                // Si la solución está visible, simplemente ocultarla
+                solutionBox.style.display = 'none';
+            }
+        }
+    </script>
+<h3><a href="index.html" id="menu">Volver al Menú Principal</a></h3>
+</body>
+</html>
